@@ -1,0 +1,28 @@
+# Excel files
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+
+# PDF files
+*.pdf
+
+# Image files
+*.jpg
+*.jpeg
+*.JPG
+*.png
+*.gif
+*.bmp
+*.tiff
+
+# Large binary/media files
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.mp4
+*.mov
+*.avi
+*.psd
+*.ai
