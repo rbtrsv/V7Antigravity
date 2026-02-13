@@ -1,3 +1,14 @@
+# ============================================================================
+# !!! NU STERGETI ACEST FISIER !!!
+#
+# Acesta este un fisier .gitignore. Spune Git-ului ce fisiere sa ignore la commit.
+# Previne ca fisierele mari (Excel, PDF, imagini, arhive, video) sa fie urcate
+# pe repository-ul GitHub.
+#
+# Acest fisier este folosit atat de oameni cat si de modele AI (LLM).
+# Echipa V7: va rugam nu stergeti si nu modificati acest fisier.
+# ============================================================================
+
 # Excel files
 *.xlsx
 *.xls
