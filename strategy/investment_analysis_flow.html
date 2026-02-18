@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V7 Capital — Investment Analysis Flow</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0f1a;
+      color: #e0e4ef;
+      padding: 40px 24px;
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    header { text-align: center; margin-bottom: 48px; }
+
+    header h1 { font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+
+    header .subtitle { font-size: 0.9rem; color: #6b7394; margin-bottom: 24px; }
+
+    /* Flow overview */
+    .flow-overview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 16px 12px;
+      border-radius: 12px;
+      background: #111827;
+      border: 1px solid #1e2540;
+      width: 160px;
+      transition: border-color 0.2s;
+      cursor: default;
+    }
+
+    .flow-step:hover { border-color: #3a4a7a; }
+
+    .flow-step .step-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .flow-step.s1 .step-num { background: #0f2a3d; color: #6ecbf5; }
+    .flow-step.s2 .step-num { background: #1e1a3d; color: #a78bfa; }
+    .flow-step.s3 .step-num { background: #1a2e1f; color: #6ee7b7; }
+    .flow-step.s4 .step-num { background: #2e2a1a; color: #fbbf24; }
+    .flow-step.s5 .step-num { background: #2e1a1a; color: #f5a06e; }
+
+    .flow-step .step-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .flow-step .step-sub {
+      font-size: 0.72rem;
+      color: #6b7394;
+    }
+
+    .flow-arrow {
+      font-size: 1.2rem;
+      color: #2a3250;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .feedback-bar {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 12px;
+      border: 1px dashed #2a3250;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #6b7394;
+    }
+
+    .feedback-bar span { color: #f5a06e; font-weight: 600; }
+
+    /* Stage sections */
+    .stage { margin-bottom: 40px; }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1e2540;
+    }
+
+    .stage-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stage.s1 .stage-num { background: #0f2a3d; color: #6ecbf5; }
+    .stage.s2 .stage-num { background: #1e1a3d; color: #a78bfa; }
+    .stage.s3 .stage-num { background: #1a2e1f; color: #6ee7b7; }
+    .stage.s4 .stage-num { background: #2e2a1a; color: #fbbf24; }
+    .stage.s5 .stage-num { background: #2e1a1a; color: #f5a06e; }
+
+    .stage-header h2 { font-size: 1.2rem; font-weight: 600; color: #fff; }
+    .stage-header .stage-tag {
+      font-size: 0.72rem;
+      color: #6b7394;
+      margin-left: auto;
+      font-style: italic;
+    }
+
+    .stage-body { padding-left: 0; }
+
+    .substage {
+      background: #111827;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    .substage h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #e0e4ef;
+      margin-bottom: 12px;
+    }
+
+    .substage p, .substage li {
+      font-size: 0.85rem;
+      color: #8b95b3;
+      margin-bottom: 6px;
+    }
+
+    .substage ul { padding-left: 20px; list-style: disc; }
+
+    .substage .note {
+      font-size: 0.78rem;
+      color: #6b7394;
+      font-style: italic;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #1e2540;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #8b95b3;
+      padding: 8px 12px;
+      background: #0b0f1a;
+      border-radius: 6px;
+    }
+
+    .check-icon { flex-shrink: 0; font-size: 0.8rem; }
+    .check-icon.p { color: #6ecbf5; }
+    .check-icon.r { color: #a78bfa; }
+    .check-icon.kill { color: #ef4444; }
+    .check-icon.warn { color: #fbbf24; }
+    .check-icon.ok { color: #6ee7b7; }
+
+    .decisions {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .decision-box {
+      flex: 1;
+      padding: 14px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .decision-invest { background: rgba(110, 231, 183, 0.1); color: #6ee7b7; border: 1px solid rgba(110, 231, 183, 0.2); }
+    .decision-pass { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
+    .decision-watch { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.2); }
+
+    .decision-box .decision-sub { font-weight: 400; font-size: 0.75rem; margin-top: 4px; opacity: 0.7; }
+
+    /* Post-mortem split */
+    .pm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .pm-card {
+      background: #0b0f1a;
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid #1e2540;
+    }
+
+    .pm-card h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .pm-card.commission h4 { color: #6ecbf5; }
+    .pm-card.omission h4 { color: #f5a06e; }
+
+    .pm-card li {
+      font-size: 0.8rem;
+      color: #8b95b3;
+      margin-bottom: 4px;
+    }
+
+    .loop-box {
+      background: linear-gradient(135deg, rgba(245, 160, 110, 0.08), rgba(110, 203, 245, 0.08));
+      border: 1px dashed #3a4a7a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .loop-box h4 {
+      font-size: 0.9rem;
+      color: #f5a06e;
+      margin-bottom: 8px;
+    }
+
+    .loop-box p {
+      font-size: 0.82rem;
+      color: #8b95b3;
+    }
+
+    .valuation-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .val-method {
+      padding: 12px;
+      background: #0b0f1a;
+      border-radius: 6px;
+      border-left: 3px solid #a78bfa;
+    }
+
+    .val-method .val-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #e0e4ef;
+      margin-bottom: 4px;
+    }
+
+    .val-method .val-desc {
+      font-size: 0.72rem;
+      color: #6b7394;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 0.8rem;
+      color: #3a4263;
+    }
+
+    @media (max-width: 700px) {
+      .flow-overview { flex-direction: column; gap: 8px; }
+      .flow-arrow { transform: rotate(90deg); }
+      .pm-grid { grid-template-columns: 1fr; }
+      .decisions { flex-direction: column; }
+      .check-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>V7 Capital — Investment Analysis Flow</h1>
+      <p class="subtitle">Proces de evaluare, documentare si invatare din fiecare oportunitate</p>
+    </header>
+
+    <!-- FLOW OVERVIEW -->
+    <div class="flow-overview">
+      <div class="flow-step s1">
+        <span class="step-num">Stage 1</span>
+        <span class="step-title">Screening & Decision</span>
+        <span class="step-sub">Why / Why Not</span>
+      </div>
+      <span class="flow-arrow">&#x25B6;</span>
+      <div class="flow-step s2">
+        <span class="step-num">Stage 2</span>
+        <span class="step-title">Valuation</span>
+        <span class="step-sub">Cat valoreaza?</span>
+      </div>
+      <span class="flow-arrow">&#x25B6;</span>
+      <div class="flow-step s3">
+        <span class="step-num">Stage 3</span>
+        <span class="step-title">Expectations Map</span>
+        <span class="step-sub">What Needs to Happen</span>
+      </div>
+      <span class="flow-arrow">&#x25B6;</span>
+      <div class="flow-step s4">
+        <span class="step-num">Stage 4</span>
+        <span class="step-title">Monitoring</span>
+        <span class="step-sub">Track vs. Expectations</span>
+      </div>
+      <span class="flow-arrow">&#x25B6;</span>
+      <div class="flow-step s5">
+        <span class="step-num">Stage 5</span>
+        <span class="step-title">Post-Mortem</span>
+        <span class="step-sub">Close the Loop</span>
+      </div>
+    </div>
+
+    <div class="feedback-bar">
+      <span>&#x21BB; FEEDBACK LOOP</span> — Learnings din Stage 5 actualizeaza framework-ul si imbunatatesc Stage 1-4 pentru urmatoarele oportunitati
+    </div>
+
+    <!-- STAGE 1 -->
+    <section class="stage s1">
+      <div class="stage-header">
+        <span class="stage-num">Stage 1</span>
+        <h2>Screening & Decision — Why We Invest / Why Not</h2>
+        <span class="stage-tag">Framework: 48 parametri x 4 piloni</span>
+      </div>
+      <div class="stage-body">
+        <div class="substage">
+          <h3>1.1 Kill Factor Check</h3>
+          <p>Verificare rapida a factorilor eliminatorii inainte de evaluarea completa.</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon kill">&#x2716;</span> F3 Integritate — nenegociabil, binar</div>
+            <div class="check-item"><span class="check-icon kill">&#x2716;</span> Alte red flags identificate in screening</div>
+          </div>
+          <p class="note">Daca orice kill factor = FAIL, documenteaza motivul si treci direct in PASS.</p>
+        </div>
+
+        <div class="substage">
+          <h3>1.2 Evaluare pe Framework-ul de Asimetrie</h3>
+          <p>Scoring qualitativ per parametru: Strong / Neutral / Weak / N/A</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon p">&#x1F464;</span> <strong>Fondatori</strong> (12 parametri) — influenteaza masiv P</div>
+            <div class="check-item"><span class="check-icon r">&#x1F3E2;</span> <strong>Companie</strong> (16 parametri) — mix P + R</div>
+            <div class="check-item"><span class="check-icon ok">&#x1F30D;</span> <strong>Industrie</strong> (9 parametri) — influenteaza masiv R</div>
+            <div class="check-item"><span class="check-icon warn">&#x1F4DD;</span> <strong>Deal Structuring</strong> (11 parametri) — predominant P</div>
+          </div>
+          <p class="note">Template complet de scoring in <a href="asymmetry_parameters.html" style="color: #6ecbf5;">asymmetry_parameters.html</a></p>
+        </div>
+
+        <div class="substage">
+          <h3>1.3 Investment Thesis</h3>
+          <ul>
+            <li>Narativ: de ce DA sau de ce NU — ce vedem noi ce altii nu vad?</li>
+            <li>Top 3 motive PRO</li>
+            <li>Top 3 riscuri / motive CONTRA</li>
+          </ul>
+        </div>
+
+        <div class="substage">
+          <h3>1.4 Expected Returns</h3>
+          <p>Trei scenarii cu probabilitati, IRR, MOIC si timeline:</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon ok">&#x25B2;</span> <strong>Bull case</strong> — ce merge bine + tailwinds</div>
+            <div class="check-item"><span class="check-icon p">&#x25CF;</span> <strong>Base case</strong> — cel mai probabil scenariu</div>
+            <div class="check-item"><span class="check-icon kill">&#x25BC;</span> <strong>Bear case</strong> — ce poate merge rau</div>
+          </div>
+        </div>
+
+        <div class="substage">
+          <h3>1.5 Decizia</h3>
+          <div class="decisions">
+            <div class="decision-box decision-invest">
+              INVEST
+              <div class="decision-sub">Ticket, evaluare, % ownership</div>
+            </div>
+            <div class="decision-box decision-watch">
+              WATCHLIST
+              <div class="decision-sub">Monitorizare, conditii de re-evaluare</div>
+            </div>
+            <div class="decision-box decision-pass">
+              PASS
+              <div class="decision-sub">Motivele documentate (pt. review ulterior)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 2 -->
+    <section class="stage s2">
+      <div class="stage-header">
+        <span class="stage-num">Stage 2</span>
+        <h2>Valuation Methodology — Cat valoreaza compania?</h2>
+        <span class="stage-tag">De dezvoltat separat</span>
+      </div>
+      <div class="stage-body">
+        <div class="substage">
+          <h3>2.1 Abordari de evaluare</h3>
+          <div class="valuation-methods">
+            <div class="val-method">
+              <div class="val-name">DCF</div>
+              <div class="val-desc">Discounted Cash Flow — valoare intrinseca bazata pe cash flows viitoare</div>
+            </div>
+            <div class="val-method">
+              <div class="val-name">M&A Comps</div>
+              <div class="val-desc">Comparabile tranzactii — multipli din achizitii similare</div>
+            </div>
+            <div class="val-method">
+              <div class="val-name">Trading Comps</div>
+              <div class="val-desc">Comparabile piata — multipli companii listate similare</div>
+            </div>
+            <div class="val-method">
+              <div class="val-name">Asset-based</div>
+              <div class="val-desc">Evaluare pe active — floor valuation, relevant pt. margin of safety</div>
+            </div>
+            <div class="val-method">
+              <div class="val-name">Revenue Multiple</div>
+              <div class="val-desc">ARR/Revenue x multiple — standard SaaS/tech early growth</div>
+            </div>
+            <div class="val-method">
+              <div class="val-name">Scorecard / Berkus</div>
+              <div class="val-desc">Metode early-stage — cand nu exista financiare solide</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="substage">
+          <h3>2.2 Reconciliere & Sensitivitate</h3>
+          <ul>
+            <li>Range de evaluare din metodele aplicate</li>
+            <li>Valoare recomandata + discount/premium</li>
+            <li>Sensitivitate pe variabilele cheie (growth, marja, multiple, discount rate)</li>
+            <li>Comparatie cu entry valuation propusa</li>
+          </ul>
+          <p class="note">Metodologia detaliata de evaluare V7 se va dezvolta separat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 3 -->
+    <section class="stage s3">
+      <div class="stage-header">
+        <span class="stage-num">Stage 3</span>
+        <h2>Expectations Map — What Needs to Happen</h2>
+        <span class="stage-tag">Endogen + Exogen</span>
+      </div>
+      <div class="stage-body">
+        <div class="substage">
+          <h3>3.1 Factori Endogeni (Fondatori / Companie)</h3>
+          <p>Ce trebuie sa faca fondatorii si compania pentru a atinge asteptarile:</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon p">&#x25CF;</span> <strong>Milestones Produs</strong> — features, PMF, tech debt</div>
+            <div class="check-item"><span class="check-icon p">&#x25CF;</span> <strong>Milestones Revenue</strong> — MRR, ARR, margin targets</div>
+            <div class="check-item"><span class="check-icon p">&#x25CF;</span> <strong>Milestones Echipa</strong> — hiring key roles, retention</div>
+            <div class="check-item"><span class="check-icon p">&#x25CF;</span> <strong>Milestones Operational</strong> — procese, eficienta, scale</div>
+          </div>
+          <p class="note">Fiecare milestone cu deadline la 6 / 12 / 24 luni.</p>
+        </div>
+
+        <div class="substage">
+          <h3>3.2 Factori Exogeni (Industrie / Macro)</h3>
+          <p>Ce trebuie sa se intample in piata/economie independent de companie:</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon r">&#x25CF;</span> Crestere piata conform asumptiilor</div>
+            <div class="check-item"><span class="check-icon r">&#x25CF;</span> Trenduri macro favorabile se mentin</div>
+            <div class="check-item"><span class="check-icon r">&#x25CF;</span> Mediu competitiv stabil/favorabil</div>
+            <div class="check-item"><span class="check-icon r">&#x25CF;</span> Fara schimbari de reglementare adverse</div>
+            <div class="check-item"><span class="check-icon r">&#x25CF;</span> Conditii economice generale stabile</div>
+          </div>
+        </div>
+
+        <div class="substage">
+          <h3>3.3 Key Assumptions Log</h3>
+          <p>Top 5 asumptii care sustin teza. Daca oricare e falsa, teza trebuie reevaluata.</p>
+          <ul>
+            <li>Fiecare asumptie cu confidence level (H/M/L)</li>
+            <li>Cum verificam fiecare asumptie</li>
+            <li>Care sunt thesis-changing daca sunt false</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 4 -->
+    <section class="stage s4">
+      <div class="stage-header">
+        <span class="stage-num">Stage 4</span>
+        <h2>Monitoring & Checkpoints</h2>
+        <span class="stage-tag">Trimestrial</span>
+      </div>
+      <div class="stage-body">
+        <div class="substage">
+          <h3>4.1 Review Periodic (Trimestrial)</h3>
+          <ul>
+            <li>Actual vs. Plan: On track / Behind / Ahead</li>
+            <li>Semnale de alarma identificate</li>
+            <li>Actiuni necesare</li>
+            <li>Decizia: Hold / Follow-on / Exit</li>
+          </ul>
+        </div>
+
+        <div class="substage">
+          <h3>4.2 Early Warning Signals</h3>
+          <p>Semnale pre-definite care declanseaza review de urgenta:</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Revenue scade >20% vs. plan pe 2 trimestre</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Pierdere client >15% din revenue</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Plecare fondator / co-fondator cheie</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Runway <6 luni fara finantare</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Schimbare majora de reglementare</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Conflict de integritate / transparenta</div>
+          </div>
+        </div>
+
+        <div class="substage">
+          <h3>4.3 Assumptions Tracker</h3>
+          <p>Verificare periodica a celor 5 asumptii din Stage 3.3: Validata / Invalidata / Neconclusiva</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 5 -->
+    <section class="stage s5">
+      <div class="stage-header">
+        <span class="stage-num">Stage 5</span>
+        <h2>Post-Mortem & Learnings</h2>
+        <span class="stage-tag">Analiza &#x2192; Learnings &#x2192; Framework Update</span>
+      </div>
+      <div class="stage-body">
+
+        <!-- 5A/5B: Analiza -->
+        <div class="substage">
+          <h3>5A & 5B: Analiza (input pentru learnings)</h3>
+          <div class="pm-grid">
+            <div class="pm-card commission">
+              <h4>5A: Error of Commission (am investit)</h4>
+              <ul>
+                <li>Outcome vs. Expectations (IRR, MOIC, timeline)</li>
+                <li>Ce a mers bine / ce nu / ce semnale am ratat</li>
+              </ul>
+              <p class="note">La exit, write-off, sau inchidere investitie.</p>
+            </div>
+            <div class="pm-card omission">
+              <h4>5B: Error of Omission (am refuzat)</h4>
+              <ul>
+                <li>Cum a evoluat compania post-refuz</li>
+                <li>Am avut dreptate? Ce am subestimat/supraestimat?</li>
+              </ul>
+              <p class="note">Review anual al oportunitatilor refuzate.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5C: LEARNINGS -->
+        <div class="substage" style="border: 1px solid #f5a06e33; background: linear-gradient(135deg, #111827, #1a1410);">
+          <h3 style="color: #f5a06e;">5C: LEARNINGS — Ce am invatat? (sectiunea principala)</h3>
+          <p style="margin-bottom: 12px;">Totul de mai sus (5A, 5B) are un singur scop: sa extragem learnings concrete care imbunatatesc framework-ul.</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon p">&#x1F4CA;</span> <strong>Pe parametri</strong> — Am evaluat corect? Unde am gresit scoring-ul?</div>
+            <div class="check-item"><span class="check-icon warn">&#x2699;</span> <strong>Pe proces</strong> — Am urmat flow-ul? Am sarit pasi? Am ignorat semnale?</div>
+            <div class="check-item"><span class="check-icon kill">&#x1F9E0;</span> <strong>Pe bias-uri</strong> — Ce bias-uri cognitive ne-au influentat? (confirmation, anchoring, sunk cost, narrative fallacy)</div>
+            <div class="check-item"><span class="check-icon r">&#x1F30D;</span> <strong>Pe piata</strong> — Ce nu am anticipat despre dinamica industriei?</div>
+          </div>
+        </div>
+
+        <!-- 5D: FRAMEWORK UPDATE -->
+        <div class="substage" style="border: 1px solid #6ecbf533; background: linear-gradient(135deg, #111827, #0f1a24);">
+          <h3 style="color: #6ecbf5;">5D: FRAMEWORK UPDATE — Cum imbunatatim?</h3>
+          <p style="margin-bottom: 12px;">Fiecare learning se traduce intr-o actiune concreta asupra framework-ului.</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon ok">&#x2705;</span> <strong>Recalibrare parametri</strong> — ajustare scoring pe parametri existenti</div>
+            <div class="check-item"><span class="check-icon ok">&#x2795;</span> <strong>Parametri noi</strong> — ce lipsea si ar fi prins problema</div>
+            <div class="check-item"><span class="check-icon ok">&#x2796;</span> <strong>Parametri eliminati</strong> — ce nu mai e relevant</div>
+            <div class="check-item"><span class="check-icon ok">&#x2699;</span> <strong>Ajustari de proces</strong> — schimbari in flow-ul de analiza</div>
+          </div>
+        </div>
+
+        <!-- 5E: PATTERN TRACKING -->
+        <div class="substage">
+          <h3>5E: Pattern Tracking — Greseli recurente</h3>
+          <p>Trimestrial, agregam post-mortems si cautam patterns repetitive.</p>
+          <div class="check-grid">
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am subestimat fondatorii</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am subestimat piata</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am supraestimat produsul</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am ignorat red flags</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am fost prea conservatori</div>
+            <div class="check-item"><span class="check-icon warn">&#x26A0;</span> Am fost prea agresivi</div>
+          </div>
+        </div>
+
+        <!-- LOOP VIZUAL -->
+        <div class="loop-box">
+          <h4>&#x21BB; Fluxul de learnings</h4>
+          <p style="font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78rem; text-align: left; display: inline-block;">
+            5A/5B Analiza (Commission / Omission)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#x2193;<br>
+            5C LEARNINGS (parametri, proces, bias-uri, piata)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#x2193;<br>
+            5D FRAMEWORK UPDATE (recalibrare, noi, eliminati, proces)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#x2193;<br>
+            5E PATTERN TRACKING (greseli recurente, tendinte)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&#x2193;<br>
+            <span style="color: #6ee7b7;">&#x2501;&#x2501; FRAMEWORK v(n+1) &#x2192; Stage 1 urmatoarea oportunitate</span>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      V7 Capital — Investment Analysis Flow v1.1 — 12.02.2026<br>
+      Bazat pe <a href="asymmetry_parameters.html" style="color: #3a4263;">V7 Asymmetry Parameters Framework v3.0</a> (48 parametri, 4 piloni)
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqurate — Analiză Strategică V7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e1a;
+            --surface: #111827;
+            --surface2: #1a2235;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --accent: #6366f1;
+            --accent2: #818cf8;
+            --green: #22c55e;
+            --yellow: #eab308;
+            --red: #ef4444;
+            --orange: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .deck {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 80px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .5s ease, transform .5s ease;
+            transform: translateX(40px);
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-40px);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .nav button {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .nav button:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width .4s ease;
+            z-index: 100;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 36px;
+            left: 40px;
+            font-size: 13px;
+            color: var(--text-dim);
+            font-weight: 500;
+            z-index: 100;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        p,
+        li {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-dim);
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-dim);
+            font-weight: 400;
+            margin-bottom: 36px;
+        }
+
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--accent2);
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: var(--accent2);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tag-green {
+            background: rgba(34, 197, 94, .15);
+            color: var(--green);
+        }
+
+        .tag-yellow {
+            background: rgba(234, 179, 8, .15);
+            color: var(--yellow);
+        }
+
+        .tag-red {
+            background: rgba(239, 68, 68, .15);
+            color: var(--red);
+        }
+
+        /* Cards & Grid */
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .card-accent {
+            border-left: 3px solid var(--accent);
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 28px 20px;
+        }
+
+        .metric-card .value {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .metric-card .metric-label {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Pillar scores */
+        .pillar-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pillar-row:last-child {
+            border-bottom: none;
+        }
+
+        .pillar-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .pillar-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .pillar-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .pillar-score {
+            margin-left: auto;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* Verdict */
+        .verdict-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, .12), rgba(129, 140, 248, .06));
+            border: 1px solid rgba(99, 102, 241, .25);
+            border-radius: 20px;
+            padding: 36px;
+            margin-top: 12px;
+        }
+
+        .verdict-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        /* Lists */
+        .pro-con {
+            list-style: none;
+        }
+
+        .pro-con li {
+            padding: 6px 0;
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .pro-con li::before {
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .pro-list li::before {
+            content: "✅";
+        }
+
+        .con-list li::before {
+            content: "⚠️";
+        }
+
+        /* Bar chart */
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .bar-label {
+            width: 90px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .bar-track {
+            flex: 1;
+            height: 28px;
+            background: var(--surface2);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #fff;
+            transition: width 1s ease;
+        }
+
+        .bar-val {
+            width: 70px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .small-text {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .mt-12 {
+            margin-top: 12px;
+        }
+
+        .mt-24 {
+            margin-top: 24px;
+        }
+
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress" id="progress"></div>
+    <div class="slide-counter" id="counter"></div>
+    <div class="nav">
+        <button onclick="go(-1)">←</button>
+        <button onclick="go(1)">→</button>
+    </div>
+
+    <div class="deck" id="deck">
+
+        <!-- SLIDE 1: Title -->
+        <div class="slide active">
+            <div class="label">V7 Capital — Analiză Strategică</div>
+            <h1>Aqurate</h1>
+            <p class="subtitle">B2B SaaS · Personalizare Ecommerce · Seed 200K EUR</p>
+            <div style="display:flex; gap:12px; margin-top:8px;">
+                <span class="tag tag-yellow">🟡 Investiție rezonabilă</span>
+                <span class="tag tag-green">Expected MOIC ~2x</span>
+                <span class="tag" style="background:rgba(99,102,241,.15);color:var(--accent2);">P(câștig): 65%</span>
+            </div>
+            <p class="small-text mt-24">13.02.2026 · Analist: Edi (cu suport Antigravity)</p>
+        </div>
+
+        <!-- SLIDE 2: Company Overview -->
+        <div class="slide">
+            <div class="label">Overview</div>
+            <h2>Ce face Aqurate?</h2>
+            <div class="grid2">
+                <div>
+                    <div class="card card-accent" style="margin-bottom:20px;">
+                        <h3>🛒 Produs curent</h3>
+                        <p>Recomandări personalizate de produse pe site-uri ecommerce — widget-uri AI „te-ar mai putea
+                            interesa și..."</p>
+                        <p class="small-text mt-12"><strong style="color:var(--yellow);">Verdict:</strong> Igienic, nu
+                            vital. Commodity.</p>
+                    </div>
+                    <div class="card card-accent">
+                        <h3>🏷️ Produs nou (pe hârtie)</h3>
+                        <p>Discounturi personalizate — prețuri diferite în funcție de comportamentul userului</p>
+                        <p class="small-text mt-12"><strong style="color:var(--red);">Status:</strong> Nu există încă.
+                            Teza depinde de el.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="card" style="margin-bottom:20px;">
+                        <h3>👥 Echipa (4 cofondatori)</h3>
+                        <p><strong style="color:#fff;">Vlad Marincas</strong> — CEO, viziune<br>
+                            <strong style="color:#fff;">Tudor Goicea</strong> — CRO, ex-TypingDNA<br>
+                            <strong style="color:#fff;">Lisardo Erman</strong> — CTO, PhD, Germania<br>
+                            <strong style="color:#fff;">Raul Mazilu</strong> — Data Analytics
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>💰 Ask</h3>
+                        <p>Seed 500K EUR total<br><strong style="color:var(--accent2);">V7 commitment: 200K
+                                EUR</strong><br>Model: SaaS subscription, 230+ clienți, ~90% RO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: Key Metrics -->
+        <div class="slide">
+            <div class="label">Metrici cheie</div>
+            <h2>Numerele (vara 2025)</h2>
+            <div class="grid4">
+                <div class="card metric-card">
+                    <div class="value">~600K</div>
+                    <div class="metric-label">ARR (EUR)</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value">230+</div>
+                    <div class="metric-label">Clienți</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value">50-60%</div>
+                    <div class="metric-label">Growth YoY</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value" style="color:var(--green);">≈0</div>
+                    <div class="metric-label">Cash Burn (Breakeven)</div>
+                </div>
+            </div>
+            <div class="grid4 mt-24">
+                <div class="card metric-card">
+                    <div class="value" style="font-size:28px;">€250</div>
+                    <div class="metric-label">ARPA / lună</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value" style="font-size:28px;color:var(--yellow);">3-4%</div>
+                    <div class="metric-label">Churn lunar</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value" style="font-size:28px;">3:1</div>
+                    <div class="metric-label">LTV / CAC</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="value" style="font-size:28px;">24 luni</div>
+                    <div class="metric-label">Client lifetime</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: 4 Pillars Summary -->
+        <div class="slide">
+            <div class="label">Framework V7</div>
+            <h2>Evaluare pe Cei 4 Piloni</h2>
+            <div class="card" style="max-width:800px;">
+                <div class="pillar-row">
+                    <div class="pillar-icon" style="background:rgba(34,197,94,.15);">🧑‍💼</div>
+                    <div>
+                        <div class="pillar-name">Fondatori</div>
+                        <div class="pillar-desc">Echipă completă, 5+ ani împreună, skin in the game.
+                            AI/sales/tech/analytics.</div>
+                    </div>
+                    <div class="pillar-score tag-green">🟢 Pozitiv</div>
+                </div>
+                <div class="pillar-row">
+                    <div class="pillar-icon" style="background:rgba(234,179,8,.15);">🏢</div>
+                    <div>
+                        <div class="pillar-name">Companie / Business Model</div>
+                        <div class="pillar-desc">SaaS recurent, breakeven — dar produsul curent e commodity, moat
+                            absent.</div>
+                    </div>
+                    <div class="pillar-score tag-yellow">🟡 Mixt</div>
+                </div>
+                <div class="pillar-row">
+                    <div class="pillar-icon" style="background:rgba(234,179,8,.15);">🌍</div>
+                    <div>
+                        <div class="pillar-name">Industria</div>
+                        <div class="pillar-desc">Piață mare (7B+), trenduri AI favorabile — dar competiție intensă, fără
+                            efecte de rețea.</div>
+                    </div>
+                    <div class="pillar-score tag-yellow">🟡 Mixt</div>
+                </div>
+                <div class="pillar-row">
+                    <div class="pillar-icon" style="background:rgba(99,102,241,.15);">🔧</div>
+                    <div>
+                        <div class="pillar-name">Deal Structuring</div>
+                        <div class="pillar-desc">CLA sau Ratchet + LP 1x. Protecție downside prin structură.</div>
+                    </div>
+                    <div class="pillar-score" style="background:rgba(99,102,241,.15);color:var(--accent2);">📐 Rec.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: Founders -->
+        <div class="slide">
+            <div class="label">Pilon 1</div>
+            <h2>🧑‍💼 Fondatori — <span style="color:var(--green);">Pozitiv</span></h2>
+            <div class="grid2">
+                <div class="card">
+                    <h3 style="color:var(--green);">✅ Forte</h3>
+                    <ul class="pro-con pro-list">
+                        <li>4 cofondatori complementari (CEO+CRO+CTO+DA)</li>
+                        <li>5+ ani împreună — risc scăzut de split</li>
+                        <li>Tudor Goicea ex-TypingDNA (exits)</li>
+                        <li>Lisardo PhD, bazat Germania — avantaj DACH</li>
+                        <li>Full-time toți 4, Tudor investit 20K proprii</li>
+                        <li>Au crescut la 600K ARR fără capital semnificativ</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--yellow);">⚠️ De monitorizat</h3>
+                    <ul class="pro-con con-list">
+                        <li>Edi nu i-a cunoscut pe CTO și Data Analyst</li>
+                        <li>Experiență scalare internațională limitată</li>
+                        <li>Proiecții ambițioase: 600K → 7.8M ARR în 4 ani</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: Company -->
+        <div class="slide">
+            <div class="label">Pilon 2</div>
+            <h2>🏢 Companie — <span style="color:var(--yellow);">Mixt</span></h2>
+            <div class="grid2">
+                <div class="card">
+                    <h3 style="color:var(--green);">Forte</h3>
+                    <ul class="pro-con pro-list" style="font-size:14px;">
+                        <li>GTM funcțional: inbound + outbound + 40+ agenții</li>
+                        <li>SaaS scalabil, marje mari, breakeven</li>
+                        <li>230+ clienți, dispersie bună</li>
+                        <li>Growth 50-60% YoY</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color:var(--red);">⚠️ Red flags</h3>
+                    <ul class="pro-con con-list" style="font-size:14px;">
+                        <li><strong>Moat = 0</strong> pe produsul curent</li>
+                        <li>Value prop = nice to have, nu must have</li>
+                        <li>Produs nou (discounturi) = <strong>pe hârtie</strong></li>
+                        <li>ARPA mic (250 EUR), churn 3-4%/lună</li>
+                        <li>f64: plafon willingness-to-pay</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mt-24" style="border-left:3px solid var(--red); padding:16px 24px;">
+                <p style="font-size:15px; color:var(--yellow);"><strong>⚠️ Red flag principal:</strong> <span
+                        style="color:var(--text-dim);">Teza de investiție se bazează pe un produs care <strong
+                            style="color:#fff;">nu există încă</strong>.</span></p>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: Industry -->
+        <div class="slide">
+            <div class="label">Pilon 3</div>
+            <h2>🌍 Industria — <span style="color:var(--yellow);">Mixt</span></h2>
+            <div class="grid2">
+                <div>
+                    <div class="card" style="margin-bottom:20px;">
+                        <h3 style="color:var(--green);">Pro</h3>
+                        <ul class="pro-con pro-list" style="font-size:14px;">
+                            <li>TAM: 7.1B EUR global, SOM ~90M</li>
+                            <li>Ecommerce + AI + personalizare = trenduri puternice</li>
+                            <li>Rezistent la cicluri economice</li>
+                            <li>Risc regulatoriu scăzut</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <h3 style="color:var(--red);">Contra</h3>
+                        <ul class="pro-con con-list" style="font-size:14px;">
+                            <li><strong>Piață foarte aglomerată:</strong> Clerk, Segmentify, Algolia, Google</li>
+                            <li>Zero efecte de rețea, zero lock-in</li>
+                            <li>Exit limitat la max 5x ARR</li>
+                            <li>Plafon pe piața RO, trebuie scalare internațională</li>
+                            <li>Risc Google Automated Discounts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: Deal Structure -->
+        <div class="slide">
+            <div class="label">Pilon 4 — Recomandări</div>
+            <h2>🔧 Deal Structuring</h2>
+            <div class="grid2">
+                <div class="card">
+                    <h3>Varianta CLA</h3>
+                    <table>
+                        <tr>
+                            <td style="color:var(--text-dim);">Sumă</td>
+                            <td><strong>200K EUR</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Cap</td>
+                            <td><strong>4.5M EUR</strong> pre-money</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Discount</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Maturitate</td>
+                            <td>18 luni</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Ownership</td>
+                            <td>~4.2% → ~3.7% post Seria A</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Exp. MOIC</td>
+                            <td style="color:var(--accent2);font-weight:700;">1.95x — 2.09x</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card" style="border:1px solid var(--accent); background:rgba(99,102,241,.05);">
+                    <h3>⭐ Varianta Ratchet <span class="tag tag-green" style="font-size:11px;">Recomandat</span></h3>
+                    <table>
+                        <tr>
+                            <td style="color:var(--text-dim);">Sumă</td>
+                            <td><strong>200K EUR</strong> equity direct</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Pre-money</td>
+                            <td><strong>3.5M EUR</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Ownership</td>
+                            <td>~5.4% → ~4.7% post Seria A</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Ratchet</td>
+                            <td>La 300K MRR: earn-back fondatori<br>La 600K MRR: 50% din V7 shares</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">+ LP 1x</td>
+                            <td style="color:var(--green);">Protecție downside</td>
+                        </tr>
+                        <tr>
+                            <td style="color:var(--text-dim);">Exp. MOIC</td>
+                            <td style="color:var(--accent2);font-weight:700;">2.09x — 2.19x</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap;">
+                <span class="tag" style="background:var(--surface);border:1px solid var(--border);">✅ Information
+                    rights</span>
+                <span class="tag" style="background:var(--surface);border:1px solid var(--border);">✅ Pro-rata
+                    rights</span>
+                <span class="tag" style="background:var(--surface);border:1px solid var(--border);">✅ MFN clause</span>
+                <span class="tag" style="background:var(--surface);border:1px solid var(--border);">✅ Milestone review 6
+                    luni</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: Probability Model -->
+        <div class="slide">
+            <div class="label">Calcule Python</div>
+            <h2>📊 Model Probabilistic</h2>
+            <div class="grid2">
+                <div>
+                    <div class="card">
+                        <h3>Scenarii și probabilități</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Scenariu</th>
+                                    <th>P</th>
+                                    <th>ARR</th>
+                                    <th>Exit Val</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>🔴 Fail</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>🟠 Stagnare</td>
+                                    <td>25%</td>
+                                    <td>800K</td>
+                                    <td>2.4M</td>
+                                </tr>
+                                <tr>
+                                    <td>🟡 Base</td>
+                                    <td>35%</td>
+                                    <td>2M</td>
+                                    <td>8M</td>
+                                </tr>
+                                <tr>
+                                    <td>🟢 Bull</td>
+                                    <td>20%</td>
+                                    <td>3.5M</td>
+                                    <td>17.5M</td>
+                                </tr>
+                                <tr>
+                                    <td>🟢🟢 V. Bull</td>
+                                    <td>10%</td>
+                                    <td>7M</td>
+                                    <td>35M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <div class="card" style="margin-bottom:16px;">
+                        <h3>Expected Value per variantă</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Variantă</th>
+                                    <th>MOIC</th>
+                                    <th>EV</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CLA 4.5M</td>
+                                    <td>1.95x</td>
+                                    <td>390K</td>
+                                </tr>
+                                <tr>
+                                    <td>CLA + LP 1x</td>
+                                    <td style="color:var(--accent2);">2.09x</td>
+                                    <td>418K</td>
+                                </tr>
+                                <tr>
+                                    <td>Ratchet 3.5M</td>
+                                    <td>2.09x</td>
+                                    <td>417K</td>
+                                </tr>
+                                <tr style="background:rgba(99,102,241,.08);">
+                                    <td><strong>Ratchet + LP</strong></td>
+                                    <td style="color:var(--accent2);font-weight:700;">2.19x</td>
+                                    <td><strong>439K</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h3>Impact LP 1x</h3>
+                        <p style="font-size:14px;">Protejează stagnare: V7 primește <strong
+                                style="color:#fff;">200K</strong> (break-even) în loc de 90K. Adaugă <strong
+                                style="color:var(--accent2);">+0.14x</strong> MOIC.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: Margin of Safety -->
+        <div class="slide">
+            <div class="label">Framework V7 v3.1</div>
+            <h2>🛡️ Margin of Safety — Evaluare Duală</h2>
+            <p class="subtitle" style="max-width:700px; font-size:16px;">La VC, MoS clasic nu se aplică. MoS se creează
+                prin Deal Structuring.</p>
+            <div class="grid2">
+                <div class="card" style="border-left:3px solid var(--green);">
+                    <h3>MoS Intrinsec — 🟢 Parțial</h3>
+                    <p style="font-size:15px;">Aqurate e la <strong style="color:#fff;">breakeven</strong> pe produsul
+                        curent. Nu mor fără investiția V7.</p>
+                    <p class="small-text mt-12">Compania supraviețuiește → timpul lucrează pentru noi.</p>
+                </div>
+                <div class="card" style="border-left:3px solid var(--accent);">
+                    <h3>MoS prin Deal — ✅ Recomandat</h3>
+                    <p style="font-size:15px;"><strong style="color:#fff;">LP 1x</strong> = V7 primește min 200K
+                        înaintea fondatorilor.<br>
+                        <strong style="color:#fff;">Anti-dilution</strong> la Seria A.<br>
+                        <strong style="color:#fff;">Ratchet</strong> = plătim mai puțin, earn-back dacă livrează.
+                    </p>
+                </div>
+            </div>
+            <div class="card mt-24" style="border-left:3px solid var(--green); padding:16px 24px;">
+                <p style="font-size:15px; color:var(--green);"><strong>Concluzie:</strong> <span
+                        style="color:var(--text-dim);">Aqurate <strong style="color:#fff;">nu pică</strong> testul MoS —
+                        safety net natural + protecție deal. Superior majorității VC pure.</span></p>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: Verdict -->
+        <div class="slide">
+            <div class="label">Verdict</div>
+            <h2>🟡 Investiție Rezonabilă</h2>
+            <p class="subtitle">Nu spectaculoasă, dar justificabilă</p>
+            <div class="grid2">
+                <div>
+                    <h3 style="color:var(--green); margin-bottom:14px;">Pro</h3>
+                    <ul class="pro-con pro-list" style="font-size:14px;">
+                        <li>Fondatori solizi, 5 ani împreună</li>
+                        <li>Breakeven = MoS intrinsec parțial</li>
+                        <li>Expected MOIC <strong style="color:#fff;">~2x</strong></li>
+                        <li>P(câștig): <strong style="color:#fff;">65%</strong></li>
+                        <li>Ticket mic: 200K = 1.2% NAV</li>
+                        <li>LP 1x protejează downside</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color:var(--yellow); margin-bottom:14px;">Contra</h3>
+                    <ul class="pro-con con-list" style="font-size:14px;">
+                        <li>Produs curent = commodity fără moat</li>
+                        <li>Teza depinde de produs inexistent</li>
+                        <li>Competiție: Clerk, Segmentify, Google</li>
+                        <li>Churn 3-4%/lună</li>
+                        <li>Nu e venture case (3-5x exit)</li>
+                        <li>Expected MOIC ~2x = decent, nu extraordinar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: Recommendation -->
+        <div class="slide">
+            <div class="label">Recomandare finală</div>
+            <h2>Next Steps</h2>
+            <div class="verdict-box">
+                <div class="verdict-title">Dacă mergeți înainte:</div>
+                <div style="display:grid; grid-template-columns:40px 1fr; gap:12px 16px; font-size:15px;">
+                    <div style="font-weight:800; color:var(--accent2);">1</div>
+                    <div><strong style="color:#fff;">Ratchet + LP 1x</strong> — Intră la 3.5M, earn-back dacă livrează
+                        →<span style="color:var(--accent2);"> MOIC 2.19x</span></div>
+                    <div style="font-weight:800; color:var(--accent2);">2</div>
+                    <div><strong style="color:#fff;">Information rights lunare</strong> — MRR, churn, clienți noi,
+                        progres discounturi</div>
+                    <div style="font-weight:800; color:var(--accent2);">3</div>
+                    <div><strong style="color:#fff;">Pro-rata rights</strong> — Follow-on la Seria A dacă merge bine
+                    </div>
+                    <div style="font-weight:800; color:var(--accent2);">4</div>
+                    <div><strong style="color:#fff;">MFN clause</strong> — Protecție vs. alte CLA-uri paralele</div>
+                    <div style="font-weight:800; color:var(--accent2);">5</div>
+                    <div><strong style="color:#fff;">Milestone review la 6 luni</strong> — Progresul produsului de
+                        discounturi</div>
+                </div>
+            </div>
+            <div class="mt-24" style="display:flex; gap:24px; align-items:center;">
+                <div class="card metric-card" style="padding:20px 28px;">
+                    <div class="value" style="font-size:28px; color:var(--accent2);">2.19x</div>
+                    <div class="metric-label">Expected MOIC</div>
+                </div>
+                <div class="card metric-card" style="padding:20px 28px;">
+                    <div class="value" style="font-size:28px; color:var(--green);">65%</div>
+                    <div class="metric-label">P(câștig)</div>
+                </div>
+                <div class="card metric-card" style="padding:20px 28px;">
+                    <div class="value" style="font-size:28px;">200K</div>
+                    <div class="metric-label">Ticket (1.2% NAV)</div>
+                </div>
+                <div class="card metric-card" style="padding:20px 28px;">
+                    <div class="value" style="font-size:28px;">3.5M</div>
+                    <div class="metric-label">Pre-money (ratchet)</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /deck -->
+
+    <script>
+        let cur = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const prog = document.getElementById('progress');
+        const counter = document.getElementById('counter');
+
+        function show(n) {
+            slides.forEach((s, i) => {
+                s.classList.remove('active', 'prev');
+                if (i === n) s.classList.add('active');
+                else if (i < n) s.classList.add('prev');
+            });
+            prog.style.width = ((n + 1) / total * 100) + '%';
+            counter.textContent = (n + 1) + ' / ' + total;
+        }
+
+        function go(d) {
+            cur = Math.max(0, Math.min(total - 1, cur + d));
+            show(cur);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+        });
+
+        show(0);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V7 Capital — Parametri de Asimetrie v3.0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0b0f1a;
+      color: #e0e4ef;
+      padding: 40px 24px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    header .formula {
+      display: inline-block;
+      background: #161c2e;
+      border: 1px solid #2a3250;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.95rem;
+      color: #8b95b3;
+      margin-bottom: 16px;
+    }
+
+    header .formula span.p { color: #6ecbf5; font-weight: 600; }
+    header .formula span.r { color: #a78bfa; font-weight: 600; }
+    header .formula span.op { color: #475272; }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot-p { width: 10px; height: 10px; border-radius: 50%; background: #6ecbf5; }
+    .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #a78bfa; }
+    .dot-both { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg, #6ecbf5 50%, #a78bfa 50%); }
+    .dot-kill { width: 10px; height: 10px; border-radius: 50%; background: #ef4444; }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #6b7394;
+    }
+
+    .pillar { margin-bottom: 40px; }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1e2540;
+    }
+
+    .pillar-icon {
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .pillar-founders .pillar-icon { background: #0f2a3d; }
+    .pillar-company .pillar-icon { background: #1a1f3d; }
+    .pillar-industry .pillar-icon { background: #1a2e1f; }
+    .pillar-deal .pillar-icon { background: #2e1a1a; }
+
+    .pillar-header h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .pillar-header .pillar-tag {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-left: auto;
+    }
+
+    .pillar-founders .pillar-tag { background: #0f2a3d; color: #6ecbf5; }
+    .pillar-company .pillar-tag { background: #1e1a3d; color: #a78bfa; }
+    .pillar-industry .pillar-tag { background: #1a2e1f; color: #6ee7b7; }
+    .pillar-deal .pillar-tag { background: #2e1a1a; color: #f5a06e; }
+
+    .pillar-header .count {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #161c2e;
+      color: #6b7394;
+    }
+
+    .params-grid { display: grid; gap: 8px; }
+
+    .param-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 100px 100px;
+      align-items: center;
+      background: #111827;
+      border-radius: 8px;
+      padding: 12px 16px;
+      transition: background 0.15s;
+    }
+
+    .param-row:hover { background: #1a2236; }
+
+    .param-row.kill-factor { border-left: 3px solid #ef4444; }
+
+    .param-code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: #6b7394;
+      font-weight: 500;
+    }
+
+    .param-info { padding-right: 16px; }
+
+    .param-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #e0e4ef;
+    }
+
+    .param-desc {
+      font-size: 0.78rem;
+      color: #6b7394;
+      margin-top: 2px;
+    }
+
+    .param-p, .param-r { display: flex; justify-content: center; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .badge-p { background: rgba(110, 203, 245, 0.12); color: #6ecbf5; }
+    .badge-r { background: rgba(167, 139, 250, 0.12); color: #a78bfa; }
+    .badge-kill { background: rgba(239, 68, 68, 0.15); color: #ef4444; font-size: 0.7rem; }
+
+    .col-headers {
+      display: grid;
+      grid-template-columns: 48px 1fr 100px 100px;
+      padding: 0 16px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #475272;
+    }
+
+    .col-headers span:nth-child(3),
+    .col-headers span:nth-child(4) { text-align: center; }
+
+    .insights {
+      background: #111827;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 48px;
+      border: 1px solid #1e2540;
+    }
+
+    .insights h3 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .insights ol { padding-left: 20px; }
+
+    .insights li {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      color: #8b95b3;
+    }
+
+    .insights li strong { color: #e0e4ef; }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #3a4263;
+    }
+
+    @media (max-width: 700px) {
+      .param-row {
+        grid-template-columns: 40px 1fr 60px 60px;
+        padding: 10px 12px;
+      }
+      .param-desc { display: none; }
+      .legend { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>V7 Capital — Parametri de Asimetrie</h1>
+      <div class="formula">
+        Castig = <span class="p">P(win/lose)</span> <span class="op">x</span> <span class="r">Expected Return</span> <span class="op">x</span> Alocare
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="dot-p"></div> Probabilitate (P)</div>
+        <div class="legend-item"><div class="dot-r"></div> Expected Return (R)</div>
+        <div class="legend-item"><div class="dot-both"></div> Ambele</div>
+        <div class="legend-item"><div class="dot-kill"></div> Kill factor</div>
+      </div>
+      <p class="subtitle">48 parametri (12 Fondatori + 16 Companie + 9 Industrie + 11 Deal Structuring)</p>
+    </header>
+
+    <!-- FONDATORI -->
+    <section class="pillar pillar-founders">
+      <div class="pillar-header">
+        <div class="pillar-icon">&#x1F464;</div>
+        <h2>Pilon 1: Fondatori</h2>
+        <span class="count">12 parametri</span>
+        <span class="pillar-tag">Influenteaza masiv P</span>
+      </div>
+      <div class="col-headers">
+        <span>#</span>
+        <span>Parametru</span>
+        <span>P</span>
+        <span>R</span>
+      </div>
+      <div class="params-grid">
+        <div class="param-row">
+          <span class="param-code">F1</span>
+          <div class="param-info">
+            <div class="param-name">Competente & Skill-uri relevante</div>
+            <div class="param-desc">"Capacitatea de a o baga in poarta" — competenta reduce riscul de executie + capacitatea de a-si vinde produsul</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F2</span>
+          <div class="param-info">
+            <div class="param-name">Experienta & Track record</div>
+            <div class="param-desc">Pattern recognition + dovada ca pot livra rezultate — credibilitate si predictor de performanta</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row kill-factor">
+          <span class="param-code">F3</span>
+          <div class="param-info">
+            <div class="param-name">Integritate</div>
+            <div class="param-desc">Nenegociabil. Lipsa integritatii = investitia cade. Nu e scala, e binar</div>
+          </div>
+          <div class="param-p"><span class="badge badge-kill">KILL</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F4</span>
+          <div class="param-info">
+            <div class="param-name">Autenticitate & Asumare</div>
+            <div class="param-desc">Transparenta, onestitate, isi asuma erorile si le corecteaza — reduce acumularea de riscuri ascunse</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F5</span>
+          <div class="param-info">
+            <div class="param-name">Capacitatea de a invata & Coachability</div>
+            <div class="param-desc">Aplica feedback, creste mai repede (R) + receptivitate la mentorat V7 — permite sa influentam pozitiv P(win)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F6</span>
+          <div class="param-info">
+            <div class="param-name">Realism optimist</div>
+            <div class="param-desc">Nu subestimeaza provocarile (P) + viziune ambitioasa dar fezabila (R)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F7</span>
+          <div class="param-info">
+            <div class="param-name">Comportament cu echipa / Cultura</div>
+            <div class="param-desc">Echipa motivata si retinuta = executie mai buna, turnover mai mic</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F8</span>
+          <div class="param-info">
+            <div class="param-name">Rezilienta</div>
+            <div class="param-desc">Capacitatea de a naviga crize fara a pierde directia</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F9</span>
+          <div class="param-info">
+            <div class="param-name">Viziune pe termen lung</div>
+            <div class="param-desc">Viziunea determina ceiling-ul de crestere — cat de sus poate ajunge compania</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F10</span>
+          <div class="param-info">
+            <div class="param-name">Capacitate de a atrage talent</div>
+            <div class="param-desc">Echipa se construieste in jurul fondatorului — proportional cu succes + viteza de crestere</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F11</span>
+          <div class="param-info">
+            <div class="param-name">Skin in the game & Commitment</div>
+            <div class="param-desc">Fondatorul are investit din banii proprii / e all-in = alignment de interese. Commitment total fata de viziune</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">F12</span>
+          <div class="param-info">
+            <div class="param-name">Cofondatori complementari</div>
+            <div class="param-desc">Echipa fondatoare cu skill-uri complementare (tehnic, comercial, operational) — reduce riscul de executie + accelereaza cresterea</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANIE -->
+    <section class="pillar pillar-company">
+      <div class="pillar-header">
+        <div class="pillar-icon">&#x1F3E2;</div>
+        <h2>Pilon 2: Companie / Model de Business</h2>
+        <span class="count">16 parametri</span>
+        <span class="pillar-tag">Mix P + R</span>
+      </div>
+      <div class="col-headers">
+        <span>#</span>
+        <span>Parametru</span>
+        <span>P</span>
+        <span>R</span>
+      </div>
+      <div class="params-grid">
+        <div class="param-row">
+          <span class="param-code">C1</span>
+          <div class="param-info">
+            <div class="param-name">Product value proposition</div>
+            <div class="param-desc">Rezolva o problema reala si acuta? Cu cat mai acuta nevoia, cu atat mai probabil ca piata cumpara</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C2</span>
+          <div class="param-info">
+            <div class="param-name">Diferentiator sustenabil / Moat</div>
+            <div class="param-desc">Reduce competitia (P) + pricing power si valoare la exit (R). Include: high switching costs, proprietary data/IP, brand/trust, scale economies</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C3</span>
+          <div class="param-info">
+            <div class="param-name">Go-to-market (achizitie + retentie clienti)</div>
+            <div class="param-desc">Strategie credibila si scalabila de a ajunge la clienti = reduce riscul de a nu vinde</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C4</span>
+          <div class="param-info">
+            <div class="param-name">Monetizare, Pricing & Recurenta</div>
+            <div class="param-desc">Model de revenue, pricing power, venituri recurente (subscriptions, contracts) = predictibilitate (P) + magnitudinea return-ului (R). Include retentia veniturilor</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C5</span>
+          <div class="param-info">
+            <div class="param-name">Unit economics</div>
+            <div class="param-desc">Sanatoase = mai putin risc de a arde cash (P) + marje bune = return mai mare (R)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C6</span>
+          <div class="param-info">
+            <div class="param-name">Scalabilitate (profitabilitate marginala)</div>
+            <div class="param-desc">Efectul cresterii in profitabilitatea marginala determina cat de mare poate fi return-ul</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C7</span>
+          <div class="param-info">
+            <div class="param-name">Margin of Safety</div>
+            <div class="param-desc">Marje mari, debt zero/mic, dispersie clienti, active tangibile (ferme, terenuri, echipamente) = airbag natural. Daca merge rau, ce recuperam?</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C8</span>
+          <div class="param-info">
+            <div class="param-name">Structura portofoliului de clienti</div>
+            <div class="param-desc">Concentrare mare = risc mare; dispersie = stabilitate</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C9</span>
+          <div class="param-info">
+            <div class="param-name">Optiuni de pivotare</div>
+            <div class="param-desc">Daca planul A nu merge, exista B si C? Versatilitate = reduce riscul de pierdere totala</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C10</span>
+          <div class="param-info">
+            <div class="param-name">Potentialul de a creste piata adresabila</div>
+            <div class="param-desc">Business-ul poate expanda TAM, nu doar lua cota — upside disproportionat</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C11</span>
+          <div class="param-info">
+            <div class="param-name">Evaluarea la intrare (entry valuation)</div>
+            <div class="param-desc">Cu cat mai mica evaluarea vs. potential, cu atat mai mare pay-off-ul la exit</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C12</span>
+          <div class="param-info">
+            <div class="param-name">Viteza de crestere</div>
+            <div class="param-desc">Crestere rapida = compoundare mai puternica = return mai mare, mai repede</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C13</span>
+          <div class="param-info">
+            <div class="param-name">Nevoia de capital / Cash Burn</div>
+            <div class="param-desc">Cash conversion cycle scurt + putin capital necesar = mai putin risc de lichiditate (P) + mai putin dilution (R). Include runway</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C14</span>
+          <div class="param-info">
+            <div class="param-name">Maturitatea produsului vs. piata</div>
+            <div class="param-desc">Product-market fit dovedit = risc redus. Daca e pre-PMF = risc mai mare</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C15</span>
+          <div class="param-info">
+            <div class="param-name">Capacitatea de a atrage finantare</div>
+            <div class="param-desc">Abilitatea de a atrage capital suplimentar reduce riscul de a ramane fara cash (P) + permite accelerarea cresterii (R)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">C16</span>
+          <div class="param-info">
+            <div class="param-name">Client feedback</div>
+            <div class="param-desc">Feedback pozitiv si validare din piata = confirmare ca produsul rezolva o nevoie reala, reduce riscul de executie</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIE -->
+    <section class="pillar pillar-industry">
+      <div class="pillar-header">
+        <div class="pillar-icon">&#x1F30D;</div>
+        <h2>Pilon 3: Industria</h2>
+        <span class="count">9 parametri</span>
+        <span class="pillar-tag">Influenteaza masiv R</span>
+      </div>
+      <div class="col-headers">
+        <span>#</span>
+        <span>Parametru</span>
+        <span>P</span>
+        <span>R</span>
+      </div>
+      <div class="params-grid">
+        <div class="param-row">
+          <span class="param-code">I1</span>
+          <div class="param-info">
+            <div class="param-name">Dimensiunea pietei (TAM / SAM / SOM)</div>
+            <div class="param-desc">Piata mare = ceiling de crestere (si implicit de return) mai mare</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I2</span>
+          <div class="param-info">
+            <div class="param-name">Viteza de crestere a industriei</div>
+            <div class="param-desc">Industrie in crestere = tailwind natural — return mai mare</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I3</span>
+          <div class="param-info">
+            <div class="param-name">Nivel competitiv, Concentrare & Maturitate</div>
+            <div class="param-desc">Piata fragmentata = mai greu de castigat; bariere = mai usor de aparat. Include riscul de timing — un produs prea avangardist poate esua din cauza lipsei de product-market fit</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I4</span>
+          <div class="param-info">
+            <div class="param-name">Trenduri macro favorabile</div>
+            <div class="param-desc">Tailwinds (demografice, tech, regulatorii) amplifica potentialul de return</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I5</span>
+          <div class="param-info">
+            <div class="param-name">Existenta buyer-ilor strategici / Optiuni de exit</div>
+            <div class="param-desc">Piata cu acquireri activi = exit mai probabil, la multipli mai buni</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I6</span>
+          <div class="param-info">
+            <div class="param-name">Dinamica locala RO (lag vs Vest)</div>
+            <div class="param-desc">Romania in urma = convergence play — potential de crestere accelerata</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I7</span>
+          <div class="param-info">
+            <div class="param-name">Riscul de reglementare</div>
+            <div class="param-desc">Industrii intens reglementate = risc de schimbari legislative sau de conformitate care pot afecta modelul de business</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I8</span>
+          <div class="param-info">
+            <div class="param-name">Rezistenta la cicluri economice</div>
+            <div class="param-desc">Industrii defensive = probabilitate mai mare de a supravietui recesiuni</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">I9</span>
+          <div class="param-info">
+            <div class="param-name">Efecte de retea / Winner-takes-most</div>
+            <div class="param-desc">Industria tinde spre monopol natural — jucatorul corect castiga masiv (R), dar riscul creste daca nu esti castigatorul (P)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEAL STRUCTURING -->
+    <section class="pillar pillar-deal">
+      <div class="pillar-header">
+        <div class="pillar-icon">&#x1F4DD;</div>
+        <h2>Pilon 4: Deal Structuring</h2>
+        <span class="count">11 parametri</span>
+        <span class="pillar-tag">Predominant P (protectie)</span>
+      </div>
+      <div class="col-headers">
+        <span>#</span>
+        <span>Parametru</span>
+        <span>P</span>
+        <span>R</span>
+      </div>
+      <div class="params-grid">
+        <div class="param-row">
+          <span class="param-code">D1</span>
+          <div class="param-info">
+            <div class="param-name">Liquidation Preference</div>
+            <div class="param-desc">Prioritate la distribuirea capitalului in caz de exit sau lichidare — protejeaza downside-ul, asigura recuperarea capitalului inaintea fondatorilor</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D2</span>
+          <div class="param-info">
+            <div class="param-name">Anti-dilution Protection</div>
+            <div class="param-desc">Protejeaza contra dilutiei in down rounds (P) + pastreaza ownership-ul care determina magnitudinea return-ului (R)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D3</span>
+          <div class="param-info">
+            <div class="param-name">Drag-Along Rights</div>
+            <div class="param-desc">Permite fortarea unui exit chiar daca minoritarii se opun — deblocheaza lichiditate si accelereaza realizarea return-ului</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D4</span>
+          <div class="param-info">
+            <div class="param-name">Tag-Along Rights</div>
+            <div class="param-desc">Protejeaza investitorul minoritar — daca fondatorii/majoritarii vand, avem dreptul sa vindem in aceleasi conditii. Evita scenariul de a ramane captiv</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D5</span>
+          <div class="param-info">
+            <div class="param-name">Earnout / Ratchet Provisions</div>
+            <div class="param-desc">De-risca evaluarea la intrare (P) — platim mai mult doar daca performanta se confirma. Aliniaza incentivele pentru crestere (R)</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D6</span>
+          <div class="param-info">
+            <div class="param-name">Board Seat / Governance Rights</div>
+            <div class="param-desc">Influenta directa pe decizii strategice — early warning system + capacitatea de a corecta directia inainte de a fi prea tarziu</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D7</span>
+          <div class="param-info">
+            <div class="param-name">Protective Provisions / Veto Rights</div>
+            <div class="param-desc">Dreptul de a bloca actiuni distructive: over-dilution, vanzare active sub valoare, debt excesiv, schimbarea naturii business-ului</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D8</span>
+          <div class="param-info">
+            <div class="param-name">Vesting & Lock-up fondatori</div>
+            <div class="param-desc">Asigura ca fondatorii raman pe termen lung — reduce flight risk si mentine continuitatea executiei</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D9</span>
+          <div class="param-info">
+            <div class="param-name">Pro-rata / Pre-emption Rights</div>
+            <div class="param-desc">Dreptul de a mentine sau creste participatia in runde viitoare la termeni favorabili — maximizeaza upside-ul pe investitiile castigatoare</div>
+          </div>
+          <div class="param-p"></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D10</span>
+          <div class="param-info">
+            <div class="param-name">Information Rights</div>
+            <div class="param-desc">Raportare financiara periodica, acces la audit, KPI dashboard — detectarea timpurie a problemelor reduce riscul de surprize negative</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"></div>
+        </div>
+        <div class="param-row">
+          <span class="param-code">D11</span>
+          <div class="param-info">
+            <div class="param-name">Exit Clauses / Put Options</div>
+            <div class="param-desc">Mecanism garantat de iesire = evita blocajul investitiei (P) + seteaza un floor pe return (R). Include buy-back clauses</div>
+          </div>
+          <div class="param-p"><span class="badge badge-p">&#x2713;</span></div>
+          <div class="param-r"><span class="badge badge-r">&#x2713;</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS -->
+    <div class="insights">
+      <h3>Observatii din mapare</h3>
+      <ol>
+        <li><strong>Fondatorii</strong> influenteaza <strong>masiv P(win/lose)</strong> — aproape toti parametrii sunt pe coloana de probabilitate. Calitatea fondatorilor determina executia, iar executia determina daca business-ul supravietuieste.</li>
+        <li><strong>Compania</strong> e un <strong>mix</strong> — unii parametri pe P (safety net, diversificare risc), altii pe R (scalabilitate, pricing, evaluare intrare), cativa pe ambele (diferentiator, unit economics, monetizare).</li>
+        <li><strong>Industria</strong> influenteaza aproape exclusiv <strong>Expected Return</strong> — dimensiunea pietei, trenduri, optiuni de exit. Parametrii pe P: competitia/maturitate, reglementare, rezistenta la cicluri.</li>
+        <li><strong>Deal Structuring</strong> influenteaza <strong>predominant P</strong> — majoritatea proviziilor contractuale protejeaza investitorul contra downside-ului. Exceptii pe R: drag-along (deblocheaza exit), pro-rata (maximizeaza upside), anti-dilution si earnout (ambele).</li>
+        <li><strong>Asimetria se naste la intersectie:</strong> Cele mai puternice semnale de asimetrie pozitiva apar cand ai fondatori puternici (P mare) intr-o industrie mare cu trenduri favorabile (R mare), cu un business model cu unit economics sanatoase (P + R), la o evaluare rezonabila (R mare), protejat de o structura de deal care limiteaza downside-ul (P) si amplifica upside-ul (R).</li>
+      </ol>
+    </div>
+
+    <footer>
+      V7 Capital — Versiune 3.0 — 12.02.2026
+    </footer>
+  </div>
+</body>
+</html>

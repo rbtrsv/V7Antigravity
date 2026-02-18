@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zynon — Analiză Strategică V7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080c16;
+            --surface: #0f1729;
+            --surface2: #162035;
+            --border: rgba(255, 255, 255, .07);
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --accent: #f59e0b;
+            --accent2: #fbbf24;
+            --green: #22c55e;
+            --yellow: #eab308;
+            --red: #ef4444;
+            --orange: #f97316;
+            --indigo: #6366f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 56px 76px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .45s, transform .45s;
+            transform: translateX(36px);
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        .slide.prev {
+            transform: translateX(-36px);
+        }
+
+        .nav {
+            position: fixed;
+            bottom: 28px;
+            right: 36px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .nav button {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            font-size: 17px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s;
+        }
+
+        .nav button:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            transition: width .4s;
+            z-index: 100;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 34px;
+            left: 36px;
+            font-size: 13px;
+            color: var(--text-dim);
+            font-weight: 500;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 46px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.12;
+            margin-bottom: 14px;
+        }
+
+        h2 {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -.5px;
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        p,
+        li {
+            font-size: 16px;
+            line-height: 1.65;
+            color: var(--text-dim);
+        }
+
+        .subtitle {
+            font-size: 19px;
+            color: var(--text-dim);
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tag-green {
+            background: rgba(34, 197, 94, .15);
+            color: var(--green);
+        }
+
+        .tag-yellow {
+            background: rgba(234, 179, 8, .15);
+            color: var(--yellow);
+        }
+
+        .tag-red {
+            background: rgba(239, 68, 68, .15);
+            color: var(--red);
+        }
+
+        .tag-orange {
+            background: rgba(249, 115, 22, .15);
+            color: var(--orange);
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+        }
+
+        .grid4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .card-accent {
+            border-left: 3px solid var(--accent);
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 26px 18px;
+        }
+
+        .metric-card .value {
+            font-size: 34px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+
+        .metric-card .ml {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            text-align: left;
+            padding: 9px 12px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pillar-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pillar-row:last-child {
+            border-bottom: none;
+        }
+
+        .pillar-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .pillar-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .pillar-desc {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .pillar-score {
+            margin-left: auto;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 5px 13px;
+            border-radius: 18px;
+            white-space: nowrap;
+        }
+
+        .pro-con {
+            list-style: none;
+        }
+
+        .pro-con li {
+            padding: 5px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .pro-list li::before {
+            content: "✅";
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .con-list li::before {
+            content: "⚠️";
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .rf-list li::before {
+            content: "🔴";
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .verdict-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .1), rgba(249, 115, 22, .06));
+            border: 1px solid rgba(239, 68, 68, .2);
+            border-radius: 18px;
+            padding: 32px;
+            margin-top: 10px;
+        }
+
+        .verdict-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .small {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .mt-12 {
+            margin-top: 12px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 8px 14px;
+            font-size: 14px;
+        }
+
+        .q-num {
+            font-weight: 800;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress" id="progress"></div>
+    <div class="slide-counter" id="counter"></div>
+    <div class="nav"><button onclick="go(-1)">←</button><button onclick="go(1)">→</button></div>
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide active">
+        <div class="label">V7 Capital — Analiză Strategică</div>
+        <h1>Zynon</h1>
+        <p class="subtitle">Vertical SaaS · Arhitectură Industrială · Pre-Seed ~1.08M EUR</p>
+        <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;">
+            <span class="tag tag-red">🔴 Prematur ca investiție</span>
+            <span class="tag tag-green">🟢 Teză interesantă</span>
+            <span class="tag tag-orange">Zero revenue · Zero clienți</span>
+        </div>
+        <p class="small mt-20">14.02.2026 · Analist: Edi (cu suport Antigravity)</p>
+    </div>
+
+    <!-- SLIDE 2: Overview -->
+    <div class="slide">
+        <div class="label">Overview</div>
+        <h2>Ce face Zynon?</h2>
+        <div class="grid2">
+            <div>
+                <div class="card card-accent" style="margin-bottom:18px;">
+                    <h3>🏭 Produs</h3>
+                    <p>Sistem algoritmic unificat care înlocuiește workflow-urile manuale fragmentate din arhitectura
+                        industrială cu logică data-driven.</p>
+                    <p class="small mt-12"><strong style="color:var(--accent);">Claim:</strong> 2-4x execuție mai
+                        rapidă, 3-4x throughput per echipă</p>
+                </div>
+                <div class="card card-accent">
+                    <h3>📦 Suite de produse</h3>
+                    <p><strong style="color:#fff;">Terra</strong> — Analiză teren (720€/an)<br>
+                        <strong style="color:#fff;">Vector</strong> — Planificare optimizată (3,600€/an)<br>
+                        <strong style="color:#fff;">Delta</strong> — Modelare structurală completă (7,200€/an)<br>
+                        <strong style="color:#fff;">Delta+</strong> — Structural modular/adaptabil
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="card" style="margin-bottom:18px;">
+                    <h3>👥 Echipa (16 persoane)</h3>
+                    <p><strong style="color:#fff;">Răzvan Vodă</strong> — CEO, AA DRL London<br>
+                        2 Full-Stack Devs · 5 Arhitecți · 4 Finance/Sales<br>
+                        1 Data Scientist · 1 Creative · 1 Support · 1 Urban Strategist</p>
+                    <p class="small mt-12" style="color:var(--yellow);">⚠️ Mulți par part-time (EU Commission, SAP,
+                        Publicis etc.)</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Ask</h3>
+                    <p>Pre-seed: <strong style="color:var(--accent);">~1.08M EUR</strong> pentru 18 luni<br>
+                        Model: SaaS subscription B2B<br>
+                        HQ: București · Est. 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: Status -->
+    <div class="slide">
+        <div class="label">Status actual</div>
+        <h2>Numerele (feb 2026)</h2>
+        <div class="grid4">
+            <div class="card metric-card">
+                <div class="value" style="color:var(--red);">€0</div>
+                <div class="ml">ARR</div>
+            </div>
+            <div class="card metric-card">
+                <div class="value" style="color:var(--red);">0</div>
+                <div class="ml">Clienți</div>
+            </div>
+            <div class="card metric-card">
+                <div class="value" style="color:var(--yellow);">Demo</div>
+                <div class="ml">Status produs</div>
+            </div>
+            <div class="card metric-card">
+                <div class="value" style="color:var(--red);">0</div>
+                <div class="ml">Piloturi / LOI</div>
+            </div>
+        </div>
+        <div class="grid3 mt-20">
+            <div class="card metric-card">
+                <div class="value" style="font-size:26px;">16</div>
+                <div class="ml">Oameni în echipă</div>
+            </div>
+            <div class="card metric-card">
+                <div class="value" style="font-size:26px;">18 luni</div>
+                <div class="ml">Până la lansare</div>
+            </div>
+            <div class="card metric-card">
+                <div class="value" style="font-size:26px;">~60K€/lu</div>
+                <div class="ml">Burn estimat</div>
+            </div>
+        </div>
+        <div class="card mt-20" style="border-left:3px solid var(--red);padding:14px 22px;">
+            <p style="font-size:14px;color:var(--red);"><strong>⚠️ Observație critică:</strong> <span
+                    style="color:var(--text-dim);">Toate numerele din deck sunt proiecții. <strong
+                        style="color:#fff;">Niciun data point validat de piață</strong> (clienți, revenue, churn, CAC,
+                    LTV).</span></p>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: 4 Pillars -->
+    <div class="slide">
+        <div class="label">Framework V7</div>
+        <h2>Evaluare pe Cei 4 Piloni</h2>
+        <div class="card" style="max-width:780px;">
+            <div class="pillar-row">
+                <div class="pillar-icon" style="background:rgba(234,179,8,.15);">🧑‍💼</div>
+                <div>
+                    <div class="pillar-name">Fondatori</div>
+                    <div class="pillar-desc">Echipă bună de domeniu (AA DRL, SOM, Zaha Hadid) — dar zero experiență
+                        SaaS/startup.</div>
+                </div>
+                <div class="pillar-score tag-yellow">🟡 Mixt</div>
+            </div>
+            <div class="pillar-row">
+                <div class="pillar-icon" style="background:rgba(239,68,68,.15);">🏢</div>
+                <div>
+                    <div class="pillar-name">Companie / Business</div>
+                    <div class="pillar-desc">Zero traction. Demo ≠ produs. 16 oameni pre-revenue. Value prop bună pe
+                        hârtie.</div>
+                </div>
+                <div class="pillar-score tag-red">🔴 Slab</div>
+            </div>
+            <div class="pillar-row">
+                <div class="pillar-icon" style="background:rgba(34,197,94,.15);">🌍</div>
+                <div>
+                    <div class="pillar-name">Industria</div>
+                    <div class="pillar-desc">AEC = cea mai puțin digitizată industrie (5%). TAM 4.39B EUR, CAGR 10%.
+                        Exit M&A realist.</div>
+                </div>
+                <div class="pillar-score tag-green">🟢 Pozitiv</div>
+            </div>
+            <div class="pillar-row">
+                <div class="pillar-icon" style="background:rgba(249,115,22,.15);">🔧</div>
+                <div>
+                    <div class="pillar-name">Deal Structuring</div>
+                    <div class="pillar-desc">MoS = 0 intrinsec. Protecție 100% prin deal: LP 1x, milestones tranșate,
+                        anti-dilution.</div>
+                </div>
+                <div class="pillar-score tag-orange">⚠️ Critic</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 5: Founders -->
+    <div class="slide">
+        <div class="label">Pilon 1</div>
+        <h2>🧑‍💼 Fondatori — <span style="color:var(--yellow);">Mixt</span></h2>
+        <div class="grid2">
+            <div class="card">
+                <h3 style="color:var(--green);">✅ Forte</h3>
+                <ul class="pro-con pro-list">
+                    <li>Viziune coerentă și diferențiată</li>
+                    <li>CEO: AA DRL London, experiență internațională</li>
+                    <li>Au adunat 16 oameni din medii de top (Zaha Hadid, SOM, EU Commission, Deloitte)</li>
+                    <li>Cunoaștere profundă a domeniului</li>
+                    <li>Mentori buni (Spyropoulos, Schumacher)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color:var(--red);">🔴 Red Flags</h3>
+                <ul class="pro-con rf-list">
+                    <li><strong>Zero experiență SaaS/startup</strong> — nimeni din echipă</li>
+                    <li><strong>Fondator unic</strong> — niciun cofondator vizibil</li>
+                    <li>Lipsă CTO dedicat, lipsă product manager</li>
+                    <li>Mulți membri par part-time cu joburi active</li>
+                    <li>16 oameni pre-revenue = echipă de studio, nu de startup</li>
+                    <li>Echipă de arhitecți optimizată pe domeniu, nu pe execuție SaaS</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 6: Company -->
+    <div class="slide">
+        <div class="label">Pilon 2</div>
+        <h2>🏢 Companie — <span style="color:var(--red);">Slab</span></h2>
+        <div class="grid2">
+            <div class="card">
+                <h3 style="color:var(--green);">Ce funcționează (pe hârtie)</h3>
+                <ul class="pro-con pro-list" style="font-size:13px;">
+                    <li>Value prop clară: 2-4x speed, 3-4x throughput</li>
+                    <li>SaaS cloud-native, arhitectură modulară</li>
+                    <li>Pricing rezonabil (720-7,200€/an)</li>
+                    <li>Produs modular = land & expand natural</li>
+                    <li>Moat potențial: date cumulative, switching costs</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="color:var(--red);">Ce lipsește</h3>
+                <ul class="pro-con rf-list" style="font-size:13px;">
+                    <li><strong>Zero clienți, piloturi, LOI, waitlist</strong></li>
+                    <li>Demo proof-of-concept ≠ MVP — platforma se construiește de la zero</li>
+                    <li>Zero GTM validat — 4 oameni „sales" dar 0 vânzări</li>
+                    <li>Unit economics complet necunoscute</li>
+                    <li>MoS intrinsec = zero (pre-revenue, zero active)</li>
+                    <li>Burn rate nejustificat (16 oameni × 18 luni)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mt-20" style="border-left:3px solid var(--red);padding:14px 22px;">
+            <p style="font-size:14px;color:var(--red);"><strong>Red flag principal:</strong> <span
+                    style="color:var(--text-dim);">Totul este pe hârtie. <strong style="color:#fff;">Niciun data point
+                        validat de piață.</strong> Demo-ul dovedește logica algoritmică, nu product-market fit.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- SLIDE 7: Industry -->
+    <div class="slide">
+        <div class="label">Pilon 3</div>
+        <h2>🌍 Industria — <span style="color:var(--green);">Pozitiv</span></h2>
+        <div class="grid2">
+            <div>
+                <div class="card" style="margin-bottom:16px;">
+                    <h3 style="color:var(--green);">De ce e interesant</h3>
+                    <ul class="pro-con pro-list" style="font-size:13px;">
+                        <li>TAM AEC SaaS: <strong style="color:#fff;">21B+ EUR</strong> (2033), CAGR 9-10%</li>
+                        <li>Zynon TAM bottom-up: <strong style="color:#fff;">4.39B EUR</strong></li>
+                        <li>Arhitectura = <strong style="color:#fff;">cea mai puțin automatizată</strong> industrie (5%
+                            AI adoption)</li>
+                        <li>Cerere structurală: data centers, AI infra, logistics</li>
+                        <li>Exit M&A realist: Autodesk, Trimble, Nemetschek</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Multipli de referință</h3>
+                    <table>
+                        <tr>
+                            <td>Autodesk</td>
+                            <td style="color:var(--accent);font-weight:700;">~12x ARR</td>
+                        </tr>
+                        <tr>
+                            <td>Nemetschek</td>
+                            <td style="color:var(--accent);font-weight:700;">~15x ARR</td>
+                        </tr>
+                        <tr>
+                            <td>Trimble</td>
+                            <td style="color:var(--accent);font-weight:700;">~8x ARR</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color:var(--yellow);">Riscuri industrie</h3>
+                <ul class="pro-con con-list" style="font-size:13px;">
+                    <li><strong>3 incumbenți:</strong> Autodesk (27%), Trimble (13%), Nemetschek (8%) — resurse uriașe
+                    </li>
+                    <li>Incumbenții pot construi soluții similare sau achiziționa</li>
+                    <li>Construcțiile sunt ciclice (dar industrial mai rezistent)</li>
+                    <li>Fără efecte de rețea directe</li>
+                    <li>Sales cycle în AEC e lung (enterprise B2B)</li>
+                </ul>
+                <div style="margin-top:14px;padding:12px;background:rgba(34,197,94,.08);border-radius:10px;">
+                    <p style="font-size:12px;color:var(--green);"><strong>Concluzie:</strong> Industria e cel mai
+                        puternic pilon. Gap-ul de automatizare e real și nu e adresat de incumbenți.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 8: AI Adoption Gap -->
+    <div class="slide">
+        <div class="label">Context</div>
+        <h2>📊 Gap-ul de Automatizare — Oportunitatea</h2>
+        <p class="subtitle" style="font-size:15px;max-width:650px;">Arhitectura rămâne ultima industrie majoră care nu a
+            adoptat AI. Zynon vizează exact acest gap.</p>
+        <div class="card" style="max-width:700px;">
+            <div style="margin-bottom:18px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                    <span style="width:130px;font-size:13px;text-align:right;font-weight:500;">Comunicații</span>
+                    <div style="flex:1;height:26px;background:var(--surface2);border-radius:7px;overflow:hidden;">
+                        <div
+                            style="width:80%;height:100%;background:linear-gradient(90deg,var(--green),#4ade80);border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#000;">
+                            80%</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                    <span style="width:130px;font-size:13px;text-align:right;font-weight:500;">Finanțe</span>
+                    <div style="flex:1;height:26px;background:var(--surface2);border-radius:7px;overflow:hidden;">
+                        <div
+                            style="width:55%;height:100%;background:linear-gradient(90deg,var(--green),#4ade80);border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#000;">
+                            55%</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                    <span style="width:130px;font-size:13px;text-align:right;font-weight:500;">Automotive</span>
+                    <div style="flex:1;height:26px;background:var(--surface2);border-radius:7px;overflow:hidden;">
+                        <div
+                            style="width:40%;height:100%;background:linear-gradient(90deg,var(--yellow),#facc15);border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#000;">
+                            40%</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                    <span style="width:130px;font-size:13px;text-align:right;font-weight:500;">Manufacturing</span>
+                    <div style="flex:1;height:26px;background:var(--surface2);border-radius:7px;overflow:hidden;">
+                        <div
+                            style="width:25%;height:100%;background:linear-gradient(90deg,var(--orange),#fb923c);border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#000;">
+                            25%</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <span
+                        style="width:130px;font-size:13px;text-align:right;font-weight:700;color:var(--accent);">Arhitectură</span>
+                    <div style="flex:1;height:26px;background:var(--surface2);border-radius:7px;overflow:hidden;">
+                        <div
+                            style="width:5%;height:100%;background:linear-gradient(90deg,var(--red),#f87171);border-radius:7px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff;">
+                            5%</div>
+                    </div>
+                    <span style="font-size:12px;color:var(--red);font-weight:700;">← Zynon</span>
+                </div>
+            </div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:20px;">
+            <div class="card metric-card" style="padding:18px;">
+                <div class="value" style="font-size:24px;color:var(--accent);">€3-5B</div>
+                <div class="ml">AEC SaaS Opportunity</div>
+            </div>
+            <div class="card metric-card" style="padding:18px;">
+                <div class="value" style="font-size:24px;color:var(--green);">9-10%</div>
+                <div class="ml">CAGR</div>
+            </div>
+            <div class="card metric-card" style="padding:18px;">
+                <div class="value" style="font-size:24px;">€4.39B</div>
+                <div class="ml">TAM Zynon (bottom-up)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 9: MoS -->
+    <div class="slide">
+        <div class="label">Framework V7 v3.1</div>
+        <h2>🛡️ Margin of Safety</h2>
+        <p class="subtitle" style="font-size:15px;">Zynon = caz pur VC. MoS intrinsec inexistent. Protecție 100% prin
+            deal.</p>
+        <div class="grid2">
+            <div class="card" style="border-left:3px solid var(--red);">
+                <h3>MoS Intrinsec — 🔴 Zero</h3>
+                <p style="font-size:14px;">Pre-revenue. Zero clienți. Zero active. Compania <strong
+                        style="color:#fff;">nu supraviețuiește fără capital extern.</strong></p>
+                <p class="small mt-12">Niciun safety net. Investiția poate fi pierdută integral.</p>
+            </div>
+            <div class="card" style="border-left:3px solid var(--accent);">
+                <h3>MoS prin Deal — ✅ Obligatoriu</h3>
+                <p style="font-size:14px;">
+                    <strong style="color:#fff;">LP 1x</strong> — V7 recuperează investiția înainte de fondatori<br>
+                    <strong style="color:#fff;">Anti-dilution</strong> — protecție la runde viitoare<br>
+                    <strong style="color:#fff;">Milestone tranșe</strong> — capital legat de livrabile concrete<br>
+                    <strong style="color:#fff;">Pro-rata</strong> — follow-on dacă livrează
+                </p>
+            </div>
+        </div>
+        <div class="card mt-20" style="border-left:3px solid var(--accent);padding:14px 22px;">
+            <h3>Recomandare deal (dacă investim)</h3>
+            <table>
+                <tr>
+                    <td style="color:var(--text-dim);">Ticket max</td>
+                    <td><strong>50-100K EUR</strong></td>
+                    <td style="color:var(--text-dim);">Pre-money max</td>
+                    <td><strong>1.5-2M EUR</strong></td>
+                </tr>
+                <tr>
+                    <td style="color:var(--text-dim);">Instrument</td>
+                    <td>CLA / SAFE</td>
+                    <td style="color:var(--text-dim);">Tranșe</td>
+                    <td>Da — pe MVP + primul client</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- SLIDE 10: Asymmetry -->
+    <div class="slide">
+        <div class="label">Asimetrie</div>
+        <h2>📊 Harta Asimetrie</h2>
+        <div class="grid2">
+            <div class="card">
+                <h3>P(win) — <span style="color:var(--red);">Scăzut (~15-25%)</span></h3>
+                <table>
+                    <tr>
+                        <td>🔴</td>
+                        <td>Zero traction</td>
+                    </tr>
+                    <tr>
+                        <td>🔴</td>
+                        <td>Demo, nu MVP</td>
+                    </tr>
+                    <tr>
+                        <td>🔴</td>
+                        <td>Zero experiență startup</td>
+                    </tr>
+                    <tr>
+                        <td>🔴</td>
+                        <td>Burn mare (16 pers)</td>
+                    </tr>
+                    <tr>
+                        <td>🔴</td>
+                        <td>18 luni la lansare</td>
+                    </tr>
+                    <tr>
+                        <td>🟡</td>
+                        <td>Echipă domeniu bună</td>
+                    </tr>
+                    <tr>
+                        <td>🟢</td>
+                        <td>Viziune clară</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3>R (return) — <span style="color:var(--green);">Mare (10-30x)</span></h3>
+                <table>
+                    <tr>
+                        <td>🟢</td>
+                        <td>TAM 4.39B EUR</td>
+                    </tr>
+                    <tr>
+                        <td>🟢</td>
+                        <td>AEC multipli 12-15x ARR</td>
+                    </tr>
+                    <tr>
+                        <td>🟢</td>
+                        <td>Gap automatizare enorm</td>
+                    </tr>
+                    <tr>
+                        <td>🟢</td>
+                        <td>Cerere structurală crescândă</td>
+                    </tr>
+                    <tr>
+                        <td>🟢</td>
+                        <td>Vertical SaaS = exits premium</td>
+                    </tr>
+                    <tr>
+                        <td>🟡</td>
+                        <td>Incumbenți puternici</td>
+                    </tr>
+                    <tr>
+                        <td>🟡</td>
+                        <td>Ciclicitate construcții</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="display:flex;gap:14px;margin-top:18px;">
+            <div class="card metric-card" style="padding:16px 22px;">
+                <div class="value" style="font-size:22px;color:var(--red);">~20%</div>
+                <div class="ml">P(win)</div>
+            </div>
+            <div class="card metric-card" style="padding:16px 22px;">
+                <div class="value" style="font-size:22px;color:var(--green);">10-30x</div>
+                <div class="ml">R potențial</div>
+            </div>
+            <div class="card metric-card" style="padding:16px 22px;flex:1.5;">
+                <p style="font-size:13px;color:var(--accent);font-weight:700;">🟡 Asimetrie POTENȚIAL POZITIVĂ — dar P
+                    foarte mic</p>
+                <p class="small mt-12">Fără calcule Python — zero data points reale disponibile</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: Verdict -->
+    <div class="slide">
+        <div class="label">Verdict</div>
+        <h2>🔴/🟡 Interesant ca teză, prematur ca investiție</h2>
+        <div class="grid2">
+            <div>
+                <h3 style="color:var(--green);margin-bottom:12px;">Ce e bun (și rar)</h3>
+                <ul class="pro-con pro-list" style="font-size:13px;">
+                    <li>Viziune coerentă pe vertical clar</li>
+                    <li>Piață mare, gap real de automatizare</li>
+                    <li>Value prop clară și măsurabilă</li>
+                    <li>Exit path realist (M&A)</li>
+                    <li>Produs modular bine gândit</li>
+                    <li>Echipă bună de domeniu</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color:var(--red);margin-bottom:12px;">Ce e problematic</h3>
+                <ul class="pro-con rf-list" style="font-size:13px;">
+                    <li>Zero validare (0 clienți, 0 piloturi)</li>
+                    <li>Demo ≠ produs (18 luni la MVP)</li>
+                    <li>Lipsă competențe SaaS/startup</li>
+                    <li>16 oameni pre-revenue = burn mare</li>
+                    <li>Fondator unic, fără cofondator/CTO</li>
+                    <li>Zero experiență antreprenorială</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card mt-20" style="padding:14px 22px;">
+            <p style="font-size:14px;"><strong style="color:var(--accent);">Ce ar schimba verdictul:</strong> <span
+                    style="color:var(--text-dim);">MVP funcțional • Primul pilot/client plătitor • CTO dedicat cu
+                    experiență SaaS • Echipă core de 4-6 (nu 16) • Cofondator complementar</span></p>
+        </div>
+    </div>
+
+    <!-- SLIDE 12: Next Steps -->
+    <div class="slide">
+        <div class="label">Recomandare</div>
+        <h2>Next Steps</h2>
+        <div class="verdict-box">
+            <div class="verdict-title">Ce recomand:</div>
+            <div style="display:grid;grid-template-columns:36px 1fr;gap:10px 14px;font-size:14px;">
+                <div class="q-num">1</div>
+                <div><strong style="color:#fff;">Meeting de explorare</strong> — discutați cu Răzvan, puneți întrebările
+                    critice</div>
+                <div class="q-num">2</div>
+                <div><strong style="color:#fff;">Nu investiți acum</strong> — prea multe necunoscute, zero data points
+                </div>
+                <div class="q-num">3</div>
+                <div><strong style="color:#fff;">Watchlist</strong> — re-evaluați când au MVP + primul client plătitor
+                </div>
+                <div class="q-num">4</div>
+                <div><strong style="color:#fff;">Dacă totuși</strong> — max 50-100K, tranșat pe milestones, CLA/SAFE cu
+                    LP 1x</div>
+            </div>
+        </div>
+        <div class="card mt-20">
+            <h3>Top 5 întrebări pentru meeting</h3>
+            <div class="q-grid">
+                <div class="q-num">1</div>
+                <div>Cine e <strong style="color:#fff;">full-time</strong>? Ce commitment au membrii cu joburi active?
+                </div>
+                <div class="q-num">2</div>
+                <div><strong style="color:#fff;">Cap table</strong>: cine deține ce? Sunt cofondatori sau doar Răzvan?
+                </div>
+                <div class="q-num">3</div>
+                <div>Au discutat cu <strong style="color:#fff;">potențiali clienți</strong>? Ce feedback? LOI/piloturi?
+                </div>
+                <div class="q-num">4</div>
+                <div>Care e <strong style="color:#fff;">burn rate-ul</strong> actual? Cum se susțin acum?</div>
+                <div class="q-num">5</div>
+                <div>La ce <strong style="color:#fff;">evaluare pre-money</strong> ridică runda? Ce au investit propriu?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let c = 0; const s = document.querySelectorAll('.slide'), t = s.length, p = document.getElementById('progress'), n = document.getElementById('counter');
+        function show(i) { s.forEach((e, j) => { e.classList.remove('active', 'prev'); if (j === i) e.classList.add('active'); else if (j < i) e.classList.add('prev'); }); p.style.width = ((i + 1) / t * 100) + '%'; n.textContent = (i + 1) + ' / ' + t; }
+        function go(d) { c = Math.max(0, Math.min(t - 1, c + d)); show(c); }
+        document.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } });
+        show(0);
+    </script>
+</body>
+
+</html>

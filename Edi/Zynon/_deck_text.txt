@@ -1,0 +1,1903 @@
+ZYNON
+DATA TAKING SHAPE.
+
+EST. 2025 / 
+HQ              / 
+CO              / 
+
+BUCHAREST, RO
+BUCHAREST, RO
+RAZVAN.VODA@ZYNON.COM
+
+zynon0.1
+
+ZYNON.COM
+
+COPYRIGHT © 
+ZYNON HOLDINGS S.A.
+ALL RIGHTS RESERVED.
+
+ 
+ 
+ 
+Leveraging the power of data
+to radically optimize
+industrial architecture.
+
+ZYNON SOFTWARE & HARDWARE 
+PRE-SEED PITCH DECK 
+
+ZYNON HOLDINGS S.A.
+ZYNON.COM
+
+CO / RAZVAN.VODA@ZYNON.COM
+PH / +40 755 577 770 
+
+ 
+ 
+ 
+ 
+ 
+ 
+This presentation, as well as the software solutions, 
+methods and processes presented therein are 
+exclusive property of ZYNON HOLDINGS S.A. and are 
+protected by applicable law.
+
+ZYNON SOFTWARE & HARDWARE 
+PRE-SEED PITCH DECK 
+
+ZYNON HOLDINGS S.A.
+ZYNON.COM
+
+CO / RAZVAN.VODA@ZYNON.COM
+PH / +40 755 577 770 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Acronyms
+
+AEC 
+APAC 
+ARR 
+BIM 
+BURN 
+CAC 
+CAD 
+CAGR 
+COGS 
+CRP 
+CTLV 
+EBITDA 
+FY 
+GM 
+GRP 
+GTM 
+ICP 
+I/O 
+KBI 
+KPI 
+LB 
+LC 
+
+Architecture, Engineering & Construction
+Asia-Pacific Region
+Annual Recurring Revenue
+Building Information Modeling
+Rate at which a Company Spends
+Customer Acquisition Cost
+Computer-Aided Design
+Compound Annual Growth Rate
+Cost of Goods Sold
+Cadastral Record Point
+Customer Total Lifetime Value
+Earnings before Interest, Depreciation & Taxes
+Fiscal Year
+Gross Margin
+Geological Record Point
+Go to Market
+Ideal Customer Profile
+Input / Output
+Key Business Indicator
+Key Performance Indicator
+Block Layer
+Context Layer
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+LPA 
+LRP 
+LS 
+LY 
+ML 
+NPS 
+OAR 
+OFP 
+OPEX 
+P&L 
+ROI 
+RTM 
+SAAS 
+SAM 
+SEO 
+SQM 
+TAM 
+TOA 
+URP 
+USP 
+W/ 
+YOY 
+
+Logistical & Production Area
+Lidar Record Point
+Site Layer
+Last Year
+Machine Learning
+Net Promoter Score
+The Order of Romanian Architects
+Optimal Floor Plan
+Operating Expenses
+Profit & Loss Statement
+Return on Investment
+Route to Market
+Software as a Service
+Serviceable Available Market
+Search Engine Optimization
+Square Meter/s
+Total Addressable Market
+Technical & Office Area
+Unique Reach Points 
+Unique Selling Proposition
+With
+Year-over-Year
+
+ 
+Executive Summary
+The only SaaS Ecosystem for Industrial Architecture
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+€3.5B Opportunity for Automation   
+
+[THE PROBLEM]
+
+[THE OPPORTUNITY]
+
+[THE SOLUTION]
+
+Architecture remains the least automated major industry, 
+dominated by a small number of players that slow down 
+true innovation. Planning and execution are fragmented 
+and human-driven, leading to slow delivery, low utilization 
+and structural margin pressure - even as demand grows.
+
+Industrial architecture is the most automation-ready 
+segment of the AEC market: standardized components, 
+explicit regulations and performance-driven constraints. 
+This opens a €3–5B global AEC SaaS opportunity that 
+remains structurally under-served by horizontal tools.
+
+Zynon is a vertical SaaS platform that unifies site analysis, 
+planning and structural logic into a single algorithmic 
+system. It delivers 2–4x faster execution across feasibility, 
+planning and technical design, and 3–4x higher revenue 
+throughput per team under fixed-fee constraints.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+THEODORE SPYROPOULOS
+DIRECTOR
+
+PATRIK SCHUMACHER
+PRINCIPAL
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Background & Mentorship
+Learning from Industry Leaders 
+& Trusted Advisors
+
+[FORMATION]
+
+2014-19 – BArch – Canadian University Dubai (CUD) [LINK]
+2019-21 – MArch – Architectural Association Design 
+Research Lab (AA DRL) [LINK] “Seismos” Project w/ Huizhong 
+Li & Xiaonan Liu [LINK]
+2021-23 – Minimaforms [LINK] “The Order of Time” Project 
+w/ Theodore Spyropoulos [LINK]
+
+[INFLUENCE]
+
+Zynon emerges from a research lineage in which 
+architecture is treated as a system of decisions, not a 
+static artifact. The AA DRL framework approaches the field 
+as an adaptive, enabling process—integrating computation, 
+regulation, material logic and participation into a 
+continuously evolving system.
+
+A work in progress, constantly adapting to the needs and 
+challenges of a society in a state of perpetual flux. This 
+perspective directly underpins Zynon's ethos and 
+understanding of the built space, focusing on problem-
+solving rather than artistic expression. 
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+PIERANDREA ANGIUS
+ARCHITECT
+
+SHAJAY BHOOSHAN
+ARCHITECT
+
+AA DRL
+MINIMAFORMS
+
+AA DRL
+ZAHA HADID
+
+RĂZVAN VODĂ
+ARCHITECT
+
+AA DRL
+FERRARI
+
+VICTOR NEVES
+ARCHITECT
+
+AA DRL
+ZAHA HADID CODE
+
+LUCA DONNER
+ARCHITECT
+
+AA DRL & CUD
+
+VICTOR SPIRIDONIDIS
+CHAIR
+
+MASSIMO IMPARATO
+DEAN
+
+CUD
+FAA & ETSAB
+
+CUD
+DONNER SORCINELLI
+
+CUD
+AUTH
+
+CUD
+STUDIO BAU
+
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Why Industrial Architecture
+Demand is Accelerating & Architecture lags behind
+
+ARCHITECTURE 
+
+MANUFACTURING 
+
+AUTOMOTIVE
+
+ENERGY 
+
+FINANCE
+
+COMMUNICATIONS 
+
+5% 
+
+15%
+
+40%
+
+AI-ADOPTION
+AUTOMATED WORKFLOWS
+
+25%
+
+20%
+
+55%
+
+55%
+
+45%
+
+40%
+
+35%
+
+85%
+
+80%
+
+[STRUCTURAL DEMAND IS RISING]
+
+[ARCHITECTURE REIMAINS LARGELY MANUAL]
+
+[INDUSTRIAL ARCHITECTURE IS BUILT FOR AUTOMATION]
+
+AI infrastructure, e-commerce, logistics optimization and 
+urbanization are driving sustained demand for warehouses, 
+data centers and fulfillment hubs. These assets must be 
+delivered faster, scale predictably and operate 
+continuously.
+
+While most industries have adopted automation and 
+algorithmic optimization, architectural planning remains 
+dominated by fragmented manual workflows, 
+disconnected tools and subjective iteration, creating 
+bottlenecks in speed, cost control and predictability.
+
+Industrial projects operate under standardized 
+components, explicit regulations and performance-driven 
+constraints. Success is measured in time, cost and 
+efficiency, not aesthetic expression. This makes industrial 
+architecture uniquely suited for algorithmic systems.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+The Problem
+Manual Iteration & Fragmented Workflows erode Speed, Margins & Growth
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+TIME 
+
+PRODUCT 
+
+DATA
+
+PHASE
+
+[FRAGMENTED, HUMAN-COORDINATED WORKFLOWS]
+
+[DIRECT PERFORMANCE IMPACT]
+
+[ECONOMIC CONSEQUENCES]
+
+Data, decisions and accountability are spread across tools, 
+specialists and project phases, with no unified system 
+linking the lifecycle. As a result, 30-40% of project time is 
+spent on manual coordination, repetitive documentation 
+and fixing downstream errors. [LINK]
+
+Issues introduced upstream often surface late, triggering 
+redesign and rework. Utilization and realization are poorly 
+controlled: only ~45% of firms report utilization above 70%, 
+and ~41% do not accurately track billed or realized time, 
+making time, cost and outcomes difficult to predict. [LINK]
+
+In fixed-fee models, unplanned coordination absorbs 
+capacity without increasing revenue. The result is chronic 
+margin pressure: ~52% of firms report net margins below 15% 
+and 1 in 4 projects runs over budget. Growth becomes 
+constrained not by demand, but by operational inefficiency.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+The Solution
+A Unified Algorithmic System that delivers Speed, Accuracy & Control
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+TIME 
+
+PRODUCT CATALOG
+
+[UNIFIED SYSTEM ARCHITECTURE]
+
+[PERFORMANCE IMPACT]
+
+[STRUCTURAL ADVANTAGE]
+
+Zynon integrates all stages and datasets into a single 
+algorithmic engine, replacing fragmented actors and 
+manual workflows with objective, data-driven logic.
+
+The system delivers instant solutions, full data integration, 
+maximum optimization, error-resistant workflows and high 
+predictability across time, cost and outcomes.
+
+Algorithmic processing ensures consistent logic across all 
+stages, enabling coherent planning, repeatable results and 
+system-level optimization.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Ontology
+Independent Product Layers 
+built on a single Shared Data System
+
+[CORE POINTS]
+
+A unified system enables a modular, layered product 
+architecture. All layers operate on a shared data backbone, 
+ensuring consistency across the workflow. Each layer 
+functions as an independent product, addressing a 
+specific stage of the project lifecycle.
+
+[ADVANTAGES]
+
+Client flexibility and scalability – adopt only the layer 
+needed. Start with one layer and add others without 
+switching tools, workflows or data.
+
+[OUTCOME]
+
+A system that is modular in parts yet fully coherent as a    
+whole, maintaining consistency, accuracy and optimization 
+across all layers.
+
+ARCHITECTURAL
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+LAYER
+
+[P3] CONSTRUCTION
+
+[P2]
+
+[P2] DESIGN
+
+[P1] ANALYSIS
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+URBANISTIC
+
+ 
+SaaS Strategy – Product Suite
+A Unified System covering Site Analysis, Planning, Structure & Execution
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Terra 
+
+Vector 
+
+Delta 
+
+Delta+ 
+
+THE OPERATING SYSTEM FOR INSTANT 
+SITE ANALYSIS & CONTEXT-AWARE 
+LAND ANALYSIS.
+
+THE OPERATING SYSTEM FOR 
+OPTIMIZED ARCHITECTURAL & URBAN 
+PLANNING.
+
+THE OPERATING SYSTEM FOR 
+COMPLETE STRUCTURAL & INTERIOR 
+MODELING.
+
+ZYNON’S BESPOKE MODULAR & 
+ADAPTABLE STRUCTURAL & INTERIOR 
+SOLUTION.
+
+4D CONTEXT 
+
+4D CONTEXT              CIRCULATION
+
+4D CONTEXT              EMERGENCY
+
+MODULAR STRUCTURE
+
+USABILITY 
+
+RATINGS 
+
+[P1] CAD
+
+SCORING SYSTEM      PARKING
+
+FOUNDATION              SUSTAINABILITY
+
+PHASED-GROWTH
+
+PRIORITIZATION          OPTIMAL PLANS
+
+STRUCTURE 
+
+            TIME & COST
+
+INWARD REORGANIZATION
+
+FUNCTIONALITY          [P2] CAD
+
+INTERIOR 
+
+            [P3] CAD & BIM
+
+OUTWARD EXTENSION 
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+            
+ 
+4D Context
+A Unified Point-Cloud Dataset
+powering all Algorithmic Decisions
+
+[CORE POINTS]
+
+The 4D Context is Zynon’s foundational data framework. 
+Multiple point clouds (site, surroundings, regulations, 
+constraints) are merged and normalized into one unified 
+dataset. This dataset forms the mathematical backbone 
+for all system logic and optimization.
+
+[CAPABILITIES]
+
+Analyzes all data dimensions simultaneously rather than in 
+isolation and provides real-world spatial awareness far 
+beyond manual workflows.
+
+[OUTCOME]
+
+A context-aware engine that balances constraints, 
+opportunities and requirements to generate solutions 
+optimized for time, cost and performance.
+
+SUPERTERRANEAN POINT CLOUD
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+DATA ARRAY
+
+DATA ARRAY
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+SUBTERRANEAN POINT CLOUD
+
+                   
+ 
+Pre-Seed App
+Functional Demo showcasing
+Core Engine Capabilities
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+The foundation is already built.
+
+[OVERVIEW]
+
+[WHAT THE DEMO DEMONSTRATES]
+
+[WHAT THE FULL VERSION WILL DELIVER]
+
+The pre-seed demo is a functional proof-of-concept built 
+to validate the mathematical foundations and core logic of 
+Zynon’s system. It performs the essential processes 
+required for data interpretation and instant output 
+generation.
+
+This demo showcases the core engine in isolation: how it 
+processes inputs, applies Zynon’s logic layers and 
+produces coherent, objective results in real time. It 
+confirms that the architecture is stable, scalable and ready 
+for commercial build. 
+
+The final platform will be built from scratch, starting from 
+the mathematical foundation and core principles of the 
+demo app. It will integrate the full Zynon capability suite 
+into a production-grade web application, ready for 
+commercial deployment. 
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+SITE
+
+€
+
+E(S | Ls)
+
+[LS] 
+
+[LB] 
+
+[LC] 
+
+Terra Overview
+Automated Site Analysis
+using Full-Site & Context-Aware Data
+
+[CORE POINTS]
+
+Terra is Zynon’s automated site analysis platform for site 
+evaluation. Uses the 4D Context to analyze physical, 
+environmental, infrastructural and regulatory conditions. 
+Integrates all datasets into a single objective evaluation.
+
+[ADVANTAGES]
+
+A. Provides a deeper site analysis than manual studies 
+
+due to the centralized data backbone;
+
+B. Delivers significantly faster results with fully 
+
+automated data processing;
+
+C. Reduces feasibility costs by eliminating manual 
+
+interpretation and fragmented workflows;
+
+D. Ensures consistent, objective evaluations across all 
+
+sites and project types.
+
+[OUTCOME]
+
+Delivers a precise assessment of a site’s value, potential 
+and development viability.
+
+VALUE POINT
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+CONTEXT
+
+ 
+Vector Overview
+Instantly Generated, fully Optimized
+Architectural Planning Solutions
+
+[CORE POINTS]
+
+Vector is an automated planning engine that replaces 
+manual 2D workflows with fast, data-driven spatial layouts 
+informed by real site conditions, flows and operational 
+logic.
+
+[ADVANTAGES]
+
+A. Automates zoning, circulation, access points, parking 
+
+and logistics flows;
+
+B. Tailors variants to budget, timeline, workflow and 
+
+expansion priorities;
+
+C. Produces build-ready planning packages;
+D. Embeds structural logic into planning to remove 
+conflicts, redesign cycles and iteration delays.
+
+[OUTCOME]
+
+Vector delivers highly optimized and context-aware 
+planning solutions instantly, transforming a slow manual 
+process into a rapid objective decision engine.
+
+ACCESS B
+
+MOBILITY ANALYSIS
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+CATALOG
+
+ACCESS A
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+UNDERGROUND UTILITIES
+
+ 
+Delta Overview
+Automated Engine for Complete & Optimized
+Structural Building Models
+
+`
+
+CONSTRUCTION CATALOG
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+[CORE POINTS]
+
+Delta generates full 3D structural models, expanding 
+planning into complete building definition. It includes all 
+planning capabilities of Vector, making it a fully 
+independent tool for taking a project from initial layout to 
+full structural configuration.
+
+[ADVANTAGES]
+
+A. Produces fully optimized structural systems that 
+integrate operational flows and requirements;
+B. Uses the 4D Context to adapt structural logic to 
+seismic, climatic and subsurface conditions;
+C. Calculates the minimum required structural load;
+D. Generates multiple structural variants;
+E.
+
+Includes detailed time and cost estimates.
+
+[OUTCOME]
+
+Structurally efficient, operationally coherent and 
+economically optimized models — delivered as clear 
+comparable structural options.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+LPA
+
+TOA
+
+MIN PARKING
+
+GEOLOGICAL-BASED FOUNDATION
+
+ 
+Delta+ Overview
+Fully Modular Structural Variant
+within Delta
+
+[GENERAL DESCRIPTION]
+
+Zynon's beskpoke modular and adaptable structural 
+solution, fully integrated with Delta. Optimized for 
+projects that require long-term flexibility. 
+
+[ADVANTAGES]
+
+A. Fully modular structural logic, designed for expansion 
+
+along any axis;
+
+B. Enables internal reorganization and phased growth;
+C. Structural changes handled algorithmically through 
+
+adjusted Delta inputs;
+
+D. Physical transformations designed to be executed 
+
+with minimal disruption to operations.
+
+[OUTCOME]
+
+A future-proof industrial structure, offered as an add-on 
+to Delta’s optimized catalogue, allowing businesses to 
+grow or pivot without overbuilding upfront.
+
+LPA STAGE 1
+
+TOA
+
+CONSTRUCTION CATALOG
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+`
+
+LPA STAGE 2
+LPA STAGE 3
+
+MIN PARKING
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+GEOLOGICAL-BASED FOUNDATION
+
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Delta+ Market Opportunity
+A Structural Response to
+Operational & Market Change
+
+Industrial projects require
+adaptable solutions.
+
+[CHANGE AS REQUIREMENT]
+
+[RIGIDITY AS A STRUCTURAL LIMITATION]
+
+[POTENTIAL FOR PHASED GROWTH]
+
+Industrial environments are rarely static. Capacity shifts, 
+equipment changes and market pressures continuously 
+reshape operational needs. Yet buildings are typically 
+designed as fixed, one-off solutions.
+
+Expansion, reconfiguration or repurposing, when feasible 
+at all, typically requires structural intervention, downtime 
+and major capital expenditure — often making adaptation 
+economically inefficient.
+
+Modular, expandable structures allow businesses to start 
+at the right size and add capacity in phases, aligning 
+investment with actual demand rather than locking capital 
+upfront.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Market Context
+A Large, Growing Market w/ Clear
+Structural Gaps
+
+[MARKET STRUCTURE]
+
+The AEC SaaS market is projected to exceed €21B by 2033, 
+growing at ~9–10% CAGR. A small number of incumbents 
+control most users, operating highly profitable, subscription-
+based platforms with ~23–30% EBITDA margins. 
+
+[MARKET PLAYBOOK]
+
+Main players focus on broad, industry-agnostic platforms 
+designed for horizontal scale. Innovation is largely absorbed 
+through acquisitions, integrating point solutions into existing 
+ecosystems. This strategy favors compatibility and market 
+coverage over rethinking workflows — leaving feasibility, 
+planning and decision automation largely untouched.
+
+[WHERE ZYNON FITS]
+
+Zynon fills this gap with a vertical SaaS platform built for 
+industrial projects. By automating planning and design 
+decisions around real-world constraints, Zynon replaces 
+manual coordination with system-level logic — delivering 
+faster timelines, higher predictability and better utilization.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+NEMETSCHEK GROUP
+8%
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+TRIMBLE INC.
+13%
+
+AUTODESK INC.
+27%
+
+ 
+USP
+Zynon’s Position in the AEC SaaS Market
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+The only vertical SaaS ecosystem
+for industrial architecture. 
+
+[VERTICAL VS HORIZONTAL TOOLS]
+
+[FULL LIFECYCLE, ONE SYSTEM]
+
+[ADDRESSING CORE INDUSTRY PAIN]
+
+Zynon is engineered specifically for industrial architecture. 
+It encodes industrial rules, constraints and operational 
+logic directly into the system, enabling levels of 
+automation, optimization and predictability that generic 
+tools cannot achieve.
+
+Terra, Vector and Delta operate on a shared data 
+backbone, eliminating tool fragmentation, data loss and 
+manual handovers across project phases. All outputs are 
+BIM and CAD compatible, allowing seamless integration 
+into existing workflows.
+
+By replacing human-driven coordination with system-level 
+logic and manual subjective iteration with automated 
+objective design, Zynon reduces rework, improves 
+utilization, increases throughput and restores margin 
+control in fixed-fee environments.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+TAM & SAM [Market Structure] 
+Defining the Global & Serviceable Industrial-Architecture opportunity
+
+DESCRIPTION
+
+UM
+
+TAM
+
+DESCRIPTION
+
+UM
+
+SAM
+
+EST. NO. OF ARCHITECTS WORLDWIDE [LINK] [LINK] [LINK] [LINK]
+
+3,250,000
+
+SAM TERRA = TAM TERRA
+
+ESTIMATIVE % OF INDUSTRIAL-INVOLVED ARCHITECTS (X) [LINK]
+
+11.5%
+
+EST. NO. OF ARCHITECTS IN EUROPE (Z) [LINK]
+
+2.34B EUR
+
+580,000
+
+INDUSTRIAL SEGMENTS ADDRESSED BY VECTOR & DELTA (Y) [LINK]
+
+76.3%
+
+SAM DELTA [EUROPEAN INDUSTRIAL ARCHITECTS = (Z)*(X)*(Y)]
+
+50,892
+
+EST. NO. OF ARCHITECTS ADDRESSED BY VECTOR & DELTA 
+
+YEARLY PRICE TERRA
+
+YEARLY PRICE DELTA
+
+TAM TERRA
+
+TAM VECTOR + DELTA
+
+4.39B EUR
+
+285,171
+
+720 EUR
+
+7,200 EUR
+
+2.34B EUR
+
+2.05B EUR
+
+SAM VECTOR [TAM VECTOR + DELTA – SAM DELTA]
+
+YEARLY PRICE DELTA
+
+YEARLY PRICE VECTOR
+
+SAM DELTA
+
+SAM VECTOR
+
+3.55B EUR
+
+234,279
+
+7,200 EUR
+
+3,600 EUR
+
+366M EUR
+
+843M EUR
+
+[TAM]
+
+[SAM]
+
+A. Calculated bottom-up from the global population of architects;
+B. Terra addresses the full market, given the universal need for feasibility;
+C. Vector and Delta address industrial-involved architects within Zynon’s serviceable 
+
+A. Terra’s SAM equals its TAM, as feasibility is globally applicable;
+B. Delta’s SAM is limited to European architects involved in industrial segments;
+C. Vector’s SAM captures the remaining industrial segment, with Delta treated as the 
+
+segments, valued using Delta’s yearly rate, as the highest-scope offering.
+
+primary industrial product in Europe to avoid overlap.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Business Overview
+A Vertical SaaS Model aligned w/ 
+measurable customer value
+
+[BUSINESS MODEL]
+
+Zynon operates as a cloud-native SaaS platform, serving 
+B2B users across the industrial development chain — 
+architects, engineering firms, developers and contractors, 
+through subscription plans designed to support 
+predictable, recurring revenue and scalable deployment.
+
+[PRICING STRATEGY]
+
+Pricing is aligned with the incremental value delivered to 
+customers, supported by product-specific case studies. 
+Subscriptions combine platform access with export-based 
+monetization, capturing value at the moment it is created 
+while scaling naturally with project volume and complexity.
+
+[MARKET POSITIONING]
+
+Compared to horizontal AEC platforms, Zynon delivers 
+greater feature depth in while maintaining market-aligned 
+pricing. It positions as a high-leverage productivity and 
+growth tool, offering superior value and full workflow 
+integration through CAD/BIM compatibility. 
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+A
+T
+L
+E
+D
+&
+R
+O
+T
+C
+E
+V
+S
+V
+S
+E
+R
+U
+T
+A
+E
+F
+F
+O
+
+.
+
+O
+N
+
+10
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+
+DELTA
+7,200 €
+
+TERRA & DELTA
+7,920 €
+
+FULL LIFECYCLE
+COVERAGE
+
+VECTOR
+3,600 €
+
+TERRA
+720 €
+
+-1
+
+0
+
+-1
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+NO. OF FEATURES VS TERRA
+
+BUBBLE SIZE = YEARLY PRICE
+
+TERRA
+
+VECTOR
+
+DELTA
+
+COMPETITORS
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ICP
+Defining Zynon’s Ideal Customer
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Industrial AEC firms delivering repeatable 
+facilities under fixed-fee pressure.
+
+[HOW THEY OPERATE]
+
+[WHERE IT BREAKS]
+
+[WHY THEY ADOPT]
+
+SMALL TEAMS, HIGH REPETITION, LIMITED REDUNDANCY
+
+COORDINATION, NOT DESIGN, BECOMES THE LIMITING FACTOR
+
+THEY ARE STRUCTURALLY FORCED TO SYSTEMIZE DELIVERY
+
+They deliver warehouses, logistics and light industrial 
+projects under tight timelines and fixed fees, where 
+inefficiency quickly compounds into margin loss.
+
+Fragmented tools, manual handoffs and late-stage issue 
+discovery pull principals and senior staff into constant 
+firefighting, capping throughput and growth.
+
+Repetition amplifies inefficiency, fixed fees punish waste 
+and there is no internal capacity to build automation, making 
+integrated external systems the only viable path to scale.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Competitive Moat
+Mutually reinforcing advantages, Compounding w/ Scale
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+End-to-End Integration
+
+Compounding Data
+
+Switching Costs
+
+First-Mover Advantage
+
+[ADVANTAGE]
+
+[ADVANTAGE]
+
+[ADVANTAGE]
+
+[ADVANTAGE]
+
+System-level optimization that 
+competitors offering horizontal tools 
+can’t replicate.
+
+A proprietary data foundation that 
+grows with scale, making it difficult 
+for late entrants to catch up.
+
+Growing operational dependence 
+over time, leading to compounding 
+switching costs.
+
+Category ownership in computable 
+industrial architecture and bottom-
+up analysis and design.
+
+[WHY]
+
+[WHY]
+
+[WHY]
+
+[WHY]
+
+Zynon unifies planning, structural 
+logic and execution constraints into 
+a single mathematical system, 
+replacing fragmented, tool-level 
+workflows.
+
+Every deployed project feeds real-
+world planning, regulatory and 
+execution data back into the 
+system, continuously refining its 
+optimization logic.
+
+As teams embed Zynon into 
+workflows and catalogs, switching 
+means losing accumulated project 
+intelligence, not just replacing 
+software.
+
+Zynon defines a new vertical 
+category that horizontal incumbents 
+are structurally disincentivized to 
+build, while market consolidation 
+favors proven platforms.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+If We’re Right
+The Consequences of a
+System-Driven Architecture
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Industrial spaces will be 
+computed, not conceived.
+
+[INDUSTRIAL ARCHITECTURE SHIFTS TO COMPUTATION]
+
+[DESIGN BECOMES SCALABLE]
+
+[VALUE CONCENTRATES AROUND SYSTEMS]
+
+Planning becomes a matter of selecting from computed 
+options, where site conditions, regulations, operational 
+needs and cost constraints are evaluated simultaneously 
+rather than resolved through manual tradeoffs.
+
+Iteration accelerates, marginal cost collapses and 
+throughput increases without proportional growth in teams 
+or time, transforming a fixed-fee, labor-bound process into 
+a predictable, high-leverage operation.
+
+As rules, constraints and workflows are embedded into a 
+single planning logic, each project strengthens the 
+system, reducing reliance on manual coordination and 
+increasing long-term defensibility.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+Pre-Seed Investment Ask
+Comprehensive 18-Month budget covering
+Development, Validation & Initial Market Expansion
+
+[OVERVIEW]
+
+Zynon requires a total investment of 1,079,345 EUR to 
+build, launch and commercially validate the full SaaS suite 
+over the 18-month pre-seed cycle.
+
+The budget is structured across four cost pillars: human 
+resources, hardware/software, operations and marketing, 
+with a conservative buffer included. A full cost breakdown 
+is available in the attached financial model.
+
+C. OPERATIONS & MARKETING [Office space, accommodation, 
+administrative overhead and early go-to-market spend 
+(ads, SEO, advertorials) to drive initial traction 
+immediately after launch.]
+
+D. CONTINGENCY BUFFER (10%) [A conservative margin 
+
+ensuring uninterrupted development and operational 
+security across the full seed cycle.]
+
+[BREAKDOWN]
+
+A. HUMAN RESOURCES [The largest share supports the 
+interdisciplinary team—software engineering, 
+architecture, structural consulting, urban strategy, 
+data science, commercial operations, marketing and 
+UI/UX—required to build and validate the entire system 
+end-to-end.]
+
+B. HARDWARE, SOFTWARE & INFRASTRUCTURE [Includes 
+
+workstations, laptops, development equipment and full 
+CAD/BIM and productivity software stacks.]
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Post-Launch Projection
+From Algorithmic Systems to AI-Driven Optimization
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+CYBER 
+
+0
+
+1
+
+2
+
+3
+
+X-1
+
+X
+
+AI
+
+LEARNING SYSTEMS
+
+[POST-LAUNCH]
+
+[SEED INVESTMENT]
+
+[POST-SEED]
+
+The focus shifts to product refinement through real-world 
+use. Operational data is collected to improve reliability, 
+performance and coverage. R&D for the structural engine 
+(Delta/Delta+) begins, setting the stage for full end-to-end 
+project integration.
+
+The next stage centers on converting accumulated data 
+into structured learning inputs. Algorithms evolve from 
+rule-driven systems into machine-learning models capable 
+of recognizing patterns across real-world datasets, 
+enabling more adaptive planning and decision support.
+
+With trained models in place and full end-to end coverage 
+achieved, the platform shifts from predefined input-
+output logic to data-driven reasoning. This enables higher-
+order optimization across a richer variable sets and 
+supports expansion beyond industrial projects.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Multidisciplinary Team
+Diverse Expertise centered around Industrial Architecture
+
+RĂZVAN VODĂ
+CEO
+
+VICTOR BĂLAN
+FULL-STACK DEV
+
+MARIUS BLAGA
+FULL-STACK DEV
+
+IULIAN TĂNĂSELEA
+ARCHITECT
+
+ANDREI VARVARA
+ARCHITECT
+
+HUIZHONG LI
+ARCHITECT
+
+XIAONAN LIU
+ARCHITECT
+
+BIANCA HORJAN
+URBAN ARCHITECT
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+AA DRL
+
+OOP
+
+EU COMISSION
+
+THERME GROUP
+
+BIM INTEGRATION
+
+AA DRL
+
+AA DRL
+
+URBAN SCOPE
+
+Graduate of the AA DRL in 
+London, specialized in 
+advanced design research, 
+computational approaches 
+and systems-based 
+frameworks. International 
+experience across the Middle 
+East, Europe and Canada w/ 
+academic training in Dubai 
+and professional 
+engagements in Jeddah, 
+London, Paris and Montreal, 
+collaborating w/ leading 
+international architects & 
+design practices. 
+
+Full-Stack Developer w/ 
+strong expertise in C#, 
+experienced in delivering 
+end-to-end software 
+solutions. Highly skilled in 
+object-oriented 
+programming, complex 
+system logic design and 
+performance-driven 
+architecture. Developed 
+complete applications, 
+from core logic and 
+system design to 
+implementation and 
+optimization.
+
+Senior Software 
+Developer w/ experience 
+in building enterprise-
+scale applications for EU 
+public sector systems. 
+Currently working at the 
+European Commission in 
+Brussels, w/ a strong 
+focus on Java 8, Spring, 
+Spring Boot, REST/SOAP 
+web services, Hibernate, 
+and AWS. Experienced in 
+feature development, 
+application deployments 
+and quality assurance.
+
+Specialized in BIM and 
+Computational Design w/ 
+focus on integrating 
+cutting-edge technologies 
+to optimize design and 
+adjacent workflows w/ 
+Revit. Involved in 
+international large-scale 
+projects at SOM in UK, IAAC 
+in Spain and Therme Group 
+in Romania. Developed an 
+expertise in 3D modeling, 
+advanced simulations and 
+scripting w/ Python at 
+University of Michigan. 
+
+Specialized in BIM 
+integration w/ Revit on 
+model development and 
+complex coordination to 
+ensure design accuracy 
+and efficient material 
+quantification. Involved 
+in major stadium and 
+industrial projects 
+across Romania, 
+including Ghencea, 
+Giulesti and Constanta, 
+as well as the Integrated 
+Dual Education Campus 
+in Brasov.
+
+Graduate of the AA DRL in 
+London, specialized in 
+turning high-level 
+architectural research 
+into tangible, innovative 
+environments. Leveraging 
+digital design tools and 
+spent years leading 
+public and commercial 
+projects in China's major 
+urban hubs. Masters 
+Multimodal LLM 
+Applications and 
+designing using AI-based
+complex agents.
+
+Graduate of the AA DRL in 
+London, specialized in 
+translating advanced 
+architectural design 
+research into real-world 
+applications and in 
+leveraging digital tools to 
+drive design innovation. 
+Brings years of 
+professional architectural 
+experience in Beijing and 
+Shanghai, delivering public 
+and commercial 
+architectural projects 
+across multiple scales.
+
+Expert Senior Consultant 
+w/ experience in Strategic 
+Planning and Urban 
+Management, specialized 
+in Sustainable Frameworks, 
+Economic and Industrial 
+Development. Contributed 
+to the preparation of 
+Development and 
+Promotion Strategies for 
+Maramures, Dolj and Buzau 
+counties, as well as 
+Cultural Strategies for Arad 
+county and city of 
+Sighisoara in Romania.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+Multidisciplinary Team
+Diverse Expertise centered around Industrial Architecture
+
+ABUBAKAR GARBA
+URBAN STRATEGIST
+
+ȘTEFAN GENES
+FINANCE & SALES
+
+EDUARD GOREA
+FINANCE & SALES
+
+ALEXANDRU SCUTARU
+FINANCE & SALES
+
+HALIM KHANDJI
+FINANCE & SALES
+
+BIANCA CIOFLÎNC
+DATA SCIENCE
+
+RADU CARATA
+CREATIVE
+
+IUSTIN STAFIE
+CUSTOMER SUPPORT
+
+ZYNON.COM
+COPYRIGHTS PROTECTED
+PROPERTY OF ZYNON HOLDINGS S.A.
+
+BURO HAPPOLD
+
+COCA-COLA HBC
+
+DELOITTE
+
+AHEAD ROMANIA
+
+ARCHI DEP
+
+SLB
+
+PUBLICIS GROUPE
+
+SAP
+
+Architect and Urban 
+Strategist based in Riyadh, 
+focused on the intersection 
+of design and technology. 
+Graduate of the Centre for 
+Development and 
+Emergency Practice at 
+Oxford Brookes, leveraging 
+over six years of 
+multifaceted experience 
+across the Middle East, 
+Africa and the Caucasus,  
+specialized in sustainable 
+social development and 
+climate resilience.
+
+Senior Key Account & 
+Commercial Manager w/ 
+deep FMCG expertise, 
+driving profitable growth 
+through long-term 
+business planning, P&L 
+ownership and high-
+impact strategies. Proven 
+in leading complex 
+negotiations, optimizing 
+portfolios and aligning 
+cross-functional teams to 
+translate strategy into 
+sustained revenue and 
+EBIT growth.
+
+Project Manager w/ strong 
+expertise in EMEA VAT and 
+digital transformation. 
+Developed software 
+products for multiple 
+clients like Nestle, Adidas 
+and NBA, translating 
+regulatory requirements 
+into scalable solutions. 
+Involved in adapting 
+software products to 
+client needs and actively 
+promote them to support 
+go-to-market efforts and 
+business growth.
+
+Senior Sales & Business 
+Development 
+Professional w/ extensive 
+experience in logistics 
+and maritime industries. 
+Proven background and 
+expertise in sales 
+management, business 
+development and 
+financial management, w/ 
+a strong track record in 
+growing commercial 
+operations. Currently 
+serving as Sales Manager 
+and General Director.
+
+Architectural Consultant 
+and Partner based in 
+Montreal, operating 
+across North America. BIM 
+specialist and regulation 
+advisor, providing deep 
+technical expertise in 
+solving complex design 
+challenges and navigating 
+building regulations. W/ a 
+background in technology 
+implementation and 
+integration, managing 
+execution from concept 
+to construction.
+
+Graduate in Economics, 
+w/ a specialization in 
+Applied Statistics and 
+Data Science. Strong 
+focus on quantitative 
+analysis and data-driven 
+research, examining the 
+relationship between 
+macroeconomic 
+dynamics and violence 
+indices using machine 
+learning methods. Proven 
+practical expertise in 
+demographic analysis 
+and financial systems.
+
+Video Editing & Animation 
+Lead at Saatchi & Saatchi 
++ The Geeks (Publicis 
+Groupe), w/ experience 
+on integrated campaigns 
+for clients like ING, IQOS 
+and Mercedes-Benz. 
+Cross-disciplinary 
+creative expertise across 
+copywriting, design and 
+motion, focused on 
+concept-driven 
+development and 
+coherent narrative 
+execution.
+
+SAP EmLA Onboarding 
+Advisor specializing in 
+guiding over 30 customers 
+through the start of their 
+RISE w/ SAP/Cloud ERP 
+Private Deals. Recognized 
+as the EMEA/MEE 
+Onboarding Advisor of the 
+Month for August 2025.
+5 additional years of 
+experience across various 
+segments of the BPO 
+sector, including Pricing & 
+Rebates and Accounts 
+Receivable.
+
+COPYRIGHT © 2026 ZYNON HOLDINGS S.A. AND/OR AFFILIATES (“ZYNON”).
+ALL RIGHTS RESERVED. THE INFORMATION IN THIS DOCUMENT IS PROPRIETARY
+AND PROVIDED FOR INFORMATIONAL PURPOSES ONLY AND SHALL NOT CREATE
+A WARRANTY OF ANY KIND.
+
+ 
+ZYNON
+DATA TAKING SHAPE.
+
+EST. 2025 / 
+HQ              / 
+CO              / 
+
+BUCHAREST, RO
+BUCHAREST, RO
+RAZVAN.VODA@ZYNON.COM
+
+thank you
+
+ZYNON.COM
+
+COPYRIGHT © 
+ZYNON HOLDINGS S.A.
+ALL RIGHTS RESERVED.
+
+ 
+ 
+ 
+
