@@ -303,7 +303,7 @@ Deal structuring influențează **ambele** laturi ale asimetriei:
 │  □ Ce poate merge greșit? (risk analysis)                            │
 │  □ Deal structure propusă                                            │
 │  □ Alocare propusă (% din portofoliu)                                │
-│  → Documentat în Antigravity                                         │
+│  → Documentat în VS Code                                            │
 └───────────────────────────┬──────────────────────────────────────────┘
                             ▼
 ┌──────────────────────────────────────────────────────────────────────┐

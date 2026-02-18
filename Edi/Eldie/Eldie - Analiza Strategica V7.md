@@ -1,7 +1,7 @@
 # Analiză Strategică: Eldie — Fit pe Strategia V7
 
 **Data analiză:** 13.02.2026
-**Analist:** Edi (Antigravity)
+**Analist:** Edi (VS Code)
 **Status:** 🟡 Screening inițial — pre-Due Diligence
 **Categorie V7:** Venture (Early Stage)
 

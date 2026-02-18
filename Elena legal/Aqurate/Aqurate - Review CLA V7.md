@@ -48,7 +48,7 @@ Avocatul a făcut o treabă bună. Documentul e mai complet decât un CLA seed s
 
 ## Flux de lucru agreat
 
-- **Antigravity** — analiză comercială, validare termeni față de strategie, identificare devieri
+- **VS Code** — analiză comercială, validare termeni față de strategie, identificare devieri
 - **Avocat** — execuție juridică, validare formulări, înregistrări, semnătură și răspundere
 
 Avocatul primește documente aproape finale și verifică că sunt solide juridic — nu le scrie de la zero.

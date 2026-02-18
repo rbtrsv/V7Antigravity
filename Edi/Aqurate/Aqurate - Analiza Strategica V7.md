@@ -1,7 +1,7 @@
 # Analiză Strategică: Aqurate — Fit pe Strategia V7
 
 **Data analiză:** 13.02.2026
-**Analist:** Edi (cu suport Antigravity)
+**Analist:** Edi (cu suport VS Code)
 **Status:** 🟡 Commitment făcut, deal în desfășurare — evaluare ca și cum decizia nu e luată
 **Categorie V7:** Nu e venture case. Se evaluează ca investiție cu return target 3-5x MOIC
 

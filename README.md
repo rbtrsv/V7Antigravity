@@ -22,6 +22,8 @@ Acest repository conține documentația de lucru pentru **V7 Capital**, un holdi
 ## Structură Documentație
 
 ```
+├── brand/
+│   └── guidelines.md        # ⭐ Brand Guidelines 2026 — culori, fonturi, logo
 ├── fund/
 │   ├── overview.md          # Descriere generală
 │   ├── philosophy.md        # Mission, Vision
@@ -71,6 +73,7 @@ Acest repository conține documentația de lucru pentru **V7 Capital**, un holdi
 
 ## Documente cheie
 
+- [Brand Guidelines](brand/guidelines.md) - ⭐ Identitate vizuală 2026 — culori, fonturi, logo, tagline
 - [Investment Framework](strategy/investment_framework.md) - ⭐ Framework complet strategie investiții (din Workshop 12.02.2026)
 - [SHA Summary](fund/sha_summary.md) - ⭐ Shareholders Agreement
 - [Philosophy](fund/philosophy.md) - Mission, Vision

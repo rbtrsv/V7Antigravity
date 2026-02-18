@@ -137,7 +137,7 @@ Iulian a prezentat și discutat cu echipa fundația filozofiei investiționale V
 - Tone-of-voice aliniat cu strategia
 - Nu marketing forțat, ci construcție naturală
 - Chiar și felul în care refuzăm un fondator contează
-- **Andreea + Antigravity:** Odată framework-ul conturat, comunicarea trebuie aliniată ca să atragă tipul potrivit de fondatori
+- **Andreea + VS Code:** Odată framework-ul conturat, comunicarea trebuie aliniată ca să atragă tipul potrivit de fondatori
 
 ---
 
@@ -151,7 +151,7 @@ Iulian a prezentat și discutat cu echipa fundația filozofiei investiționale V
 | 4 | Creare framework standardizat de analiză (refolosibil) | Echipa |
 | 5 | Trecere prin companiile din portofoliu cu framework-ul | Echipa |
 | 6 | Documentare post-factum investiții existente | Iulian (call-uri ghidate) |
-| 7 | Pattern-uri din negocieri/investiții via Antigravity | Edi |
+| 7 | Pattern-uri din negocieri/investiții via VS Code | Edi |
 | 8 | Aliniere comunicare cu strategia articulată | Andreea |
 
 ---
